@@ -84,11 +84,12 @@ docker run --rm hello-world</code></pre>
         <span class="g-num">2</span>
         <div>
           <h2>Download the files</h2>
-          <p>Make a folder for Skint, then download the compose file and the settings file into it.</p>
-          <pre><code>mkdir skint && cd skint
-curl -Lo docker-compose.yml https://github.com/murraycollier/skint/releases/latest/download/docker-compose.image.yml
-curl -Lo .env.example https://github.com/murraycollier/skint/releases/latest/download/env.example</code></pre>
-          <p>Both commands run from the same folder. Everything else happens in that folder too.</p>
+          <p>Make a folder for Skint and save both files into it.</p>
+          <div class="g-download-row">
+            <a class="btn btn--small" href="https://github.com/murraycollier/skint/releases/latest/download/docker-compose.image.yml">Download docker-compose.yml</a>
+            <a class="btn btn--small btn--ghost" href="https://github.com/murraycollier/skint/releases/latest/download/env.example">Download settings file</a>
+          </div>
+          <p class="g-note">Your browser saves them as <code>docker-compose.image.yml</code> and <code>env.example</code>. Rename them to <code>docker-compose.yml</code> and <code>.env.example</code> before continuing.</p>
         </div>
       </div>
     </section>
