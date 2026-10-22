@@ -50,40 +50,32 @@
 
     <div class="split reveal">
       <div class="split__text">
-        <h3>The overview</h3>
-        <p>Take-home pay, outgoings and money left over sit at the top. A donut shows where the money goes, the next bills due are listed by date, and a year-ahead chart shows where the balance is heading.</p>
+        <h3>Every bill, one list</h3>
+        <p>All your direct debits with a colour bar for each category. Search, filter, and switch between monthly and annual costs.</p>
       </div>
-      {{ partial "shot.html" (dict "src" "dashboard-solarized.png" "alt" "Overview dashboard in Solarized Dark with summary cards, a spending donut, upcoming bills and a year-ahead chart" "wide" true) }}
+      {{ partial "shot.html" (dict "src" "bills-dark.png" "alt" "Bills page listing direct debits with categories, payers, due dates and amounts" "wide" true) }}
     </div>
 
     <div class="split split--reverse reveal">
       <div class="split__text">
-        <h3>Every bill, one list</h3>
-        <p>All your direct debits with a colour bar for each category. Search, filter, and switch between monthly and annual costs. Adding a bill takes a few seconds.</p>
+        <h3>Who brings in what</h3>
+        <p>Take-home pay for each person, their share of the household total and what's left after outgoings.</p>
       </div>
-      {{ partial "shot.html" (dict "src" "bills-dark.png" "alt" "Bills page listing direct debits with categories, payers, due dates and amounts" "wide" true) }}
+      {{ partial "shot.html" (dict "src" "income-dark.png" "alt" "Income page showing each earner's take-home pay, gross pay and what is left after outgoings" "wide" true) }}
     </div>
 
     <div class="split reveal">
       <div class="split__text">
         <h3>Set it up your way</h3>
-        <p>Give each person a colour and a photo. Import your spreadsheet, download a JSON backup, or export a formatted Excel workbook. Everything is in Settings.</p>
+        <p>Give each person a colour and a photo. Import your spreadsheet, download a JSON backup, or export a formatted Excel workbook.</p>
       </div>
       {{ partial "shot.html" (dict "src" "settings-dark.png" "alt" "Settings page with people, colours, backup, restore, Excel export and spreadsheet import" "wide" true) }}
     </div>
 
-    <h3 class="subhead reveal">Dark themes to match your evening</h3>
-    <div class="trio reveal">
-      {{ partial "shot.html" (dict "src" "dashboard-dark.png" "alt" "Dark theme" "caption" "Dark") }}
-      {{ partial "shot.html" (dict "src" "dashboard-dracula.png" "alt" "Dracula theme" "caption" "Dracula") }}
-      {{ partial "shot.html" (dict "src" "dashboard-tokyo.png" "alt" "Tokyo Night theme" "caption" "Tokyo Night") }}
-    </div>
-    <p class="muted small center">Also available: Light and Solarized Dark.</p>
-
-    <h3 class="subhead reveal">Works on your phone</h3>
+    <h3 class="subhead reveal">On your phone</h3>
     <div class="phones reveal">
-      {{ partial "shot.html" (dict "src" "dashboard-phone-dark.png" "alt" "Overview on a phone in dark mode with a bottom navigation bar" "phone" true) }}
-      {{ partial "shot.html" (dict "src" "phone-income-dark.png" "alt" "Income page on a phone in dark mode showing take-home pay and each earner's share" "phone" true) }}
+      {{ partial "shot.html" (dict "src" "dashboard-phone-dark.png" "alt" "Overview on a phone with a bottom navigation bar" "phone" true) }}
+      {{ partial "shot.html" (dict "src" "phone-income-dark.png" "alt" "Income page on a phone showing take-home pay and each earner's share" "phone" true) }}
     </div>
   </div>
 </section>
@@ -124,7 +116,7 @@
       <li>Full JSON backups and an Excel export at any time</li>
       <li>Runs behind Traefik or any HTTPS reverse proxy</li>
     </ul>
-    <p><a class="btn btn--ghost" href="{{ "get-started/" | relLangURL }}">Read the setup guide →</a></p>
+    <p class="center"><a class="btn btn--ghost" href="{{ "get-started/" | relLangURL }}">Read the setup guide →</a></p>
   </div>
 </section>
 
