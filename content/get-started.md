@@ -5,8 +5,53 @@ description: Download Skint, run it with Docker Compose in a few minutes, then l
 
 ## What you need
 
-- A computer or home server with **Docker** and **Docker Compose** installed
+- A computer or home server with **Docker** and **Docker Compose** installed (see [Install Docker](#install-docker) below)
 - Your Expenditure spreadsheet, if you want to import existing figures
+
+## Install Docker
+
+Skint runs in Docker, so install Docker first. Pick the option for your system. You only need one.
+
+### macOS or Windows: Docker Desktop
+
+1. Download Docker Desktop from [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/) and install it.
+2. On Windows, Docker Desktop uses WSL 2. If it asks you to enable it, follow the prompt and restart.
+3. Open Docker Desktop and wait until it says it's running.
+
+### macOS: OrbStack
+
+OrbStack is a lighter alternative to Docker Desktop for Mac.
+
+1. Download OrbStack from [orbstack.dev](https://orbstack.dev) and open it.
+2. Finish the setup. OrbStack installs the `docker` and `docker compose` commands for you.
+
+### Linux: Docker Engine
+
+Docker's official install guide is at [docs.docker.com/engine/install](https://docs.docker.com/engine/install/). It covers Ubuntu, Debian, Fedora, CentOS and others. On Ubuntu or Debian, the steps are:
+
+```bash
+# Install Docker Engine and the Compose plugin from Docker's repository
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+To run `docker` without `sudo`, add your user to the `docker` group, then sign out and back in:
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+### Check it works
+
+Run these in a terminal. Both should print a version or a success message without errors:
+
+```bash
+docker --version
+docker compose version
+docker run --rm hello-world
+```
+
+Use `docker compose` with a space. The older `docker-compose` command isn't needed.
 
 ## 1. Download the files
 
