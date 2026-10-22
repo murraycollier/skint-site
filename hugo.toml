@@ -1,4 +1,4 @@
-baseURL = "https://skint.example.com/"
+baseURL = "https://skint.site/"
 locale = "en-GB"
 title = "Skint"
 disableKinds = ["taxonomy", "term", "RSS"]

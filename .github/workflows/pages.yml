@@ -30,7 +30,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - name: Build
-        run: hugo --minify --gc --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo --minify --gc
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
