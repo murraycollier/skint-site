@@ -1,9 +1,9 @@
-"""Pack the Skint app into static/downloads/skint.zip.
+"""Pack the Skint app into dist/skint.zip.
 
 Usage: python3 scripts/build_download.py /path/to/skint
 
 Only an explicit list of files goes in, so .env, data and caches never do.
-The compose file in the zip is the standalone one from static/downloads/,
+The compose file in the zip is the standalone one from release/,
 not the app's own Traefik-specific docker-compose.yml.
 """
 
@@ -12,7 +12,7 @@ import zipfile
 from pathlib import Path
 
 SITE = Path(__file__).resolve().parent.parent
-OUT = SITE / "static" / "downloads" / "skint.zip"
+OUT = SITE / "dist" / "skint.zip"
 TOP_LEVEL = ["Dockerfile", ".dockerignore", "requirements.txt", "README.md", ".env.example"]
 FOLDERS = ["app", "static"]
 
@@ -30,7 +30,7 @@ def main(source: Path) -> None:
     with zipfile.ZipFile(OUT, "w", zipfile.ZIP_DEFLATED) as zf:
         for path in files:
             zf.write(path, path.relative_to(source).as_posix())
-        zf.write(SITE / "static" / "downloads" / "docker-compose.yml", "docker-compose.yml")
+        zf.write(SITE / "release" / "docker-compose.yml", "docker-compose.yml")
     print(f"wrote {OUT} ({OUT.stat().st_size} bytes, {len(files) + 1} files)")
 
 

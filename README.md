@@ -11,15 +11,19 @@ hugo --minify          # writes to public/
 
 Replace the placeholder in `hugo.toml` before launch: `coffeeUrl`, which should point to your Buy Me a Coffee page. The same link is in `content/get-started.md`.
 
-## Refresh the app download
+## Publish a new app release
 
-The site offers `static/downloads/skint.zip`, built from the Skint app folder. Rebuild it whenever the app changes:
+Downloads and issues live in the public [skint](https://github.com/murraycollier/skint) repo, not here. To publish a new version:
 
 ```bash
-python3 scripts/build_download.py /path/to/skint
+python3 scripts/build_download.py /path/to/skint     # writes dist/skint.zip
+cp release/docker-compose.yml release/env.example dist/
+gh release create vX.Y.Z dist/skint.zip dist/docker-compose.yml dist/env.example --repo murraycollier/skint
 ```
 
-The script packs an explicit list of files (the Dockerfile, requirements, README, `.env.example`, `app/` and `static/`), so `.env`, data and caches stay out. The zip's compose file comes from `static/downloads/docker-compose.yml`. Edit that file to change the compose setup for downloads.
+The script packs an explicit list of files (the Dockerfile, requirements, README, `.env.example`, `app/` and `static/`), so `.env`, data and caches stay out. The compose file in the zip comes from `release/docker-compose.yml`.
+
+The site links to `releases/latest/download/`, so each new release updates the downloads automatically.
 
 ## Deploy
 

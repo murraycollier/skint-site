@@ -57,9 +57,9 @@ Use `docker compose` with a space. The older `docker-compose` command isn't need
 
 Download the full app, or just the compose file and settings if you already have the source:
 
-- [skint.zip](/downloads/skint.zip): the app source, Dockerfile and requirements
-- [docker-compose.yml](/downloads/docker-compose.yml): publishes Skint on port 8080
-- [env.example](/downloads/env.example): the settings file, to copy to `.env`
+- [skint.zip](https://github.com/murraycollier/skint/releases/latest/download/skint.zip): the app source, Dockerfile and requirements
+- [docker-compose.yml](https://github.com/murraycollier/skint/releases/latest/download/docker-compose.yml): publishes Skint on port 8080
+- [env.example](https://github.com/murraycollier/skint/releases/latest/download/env.example): the settings file, to copy to `.env`
 
 Unzip `skint.zip` into a new folder, then put `docker-compose.yml` in the same folder.
 

@@ -11,6 +11,8 @@ disableKinds = ["taxonomy", "term", "RSS"]
   description = "Skint is a free, self-hosted household money tracker. See take-home pay, bills and what's left at the end of the month, on your own server."
   # Buy Me a Coffee page
   coffeeUrl = "https://buymeacoffee.com/murraycollier"
-  # Where people report problems. Currently the public site repo, the only public Skint repo.
-  issuesUrl = "https://github.com/murraycollier/skint-site/issues"
-  newIssueUrl = "https://github.com/murraycollier/skint-site/issues/new/choose"
+  # The public Skint repo holds the downloads and the issue tracker.
+  repoUrl = "https://github.com/murraycollier/skint"
+  releaseUrl = "https://github.com/murraycollier/skint/releases/latest/download"
+  issuesUrl = "https://github.com/murraycollier/skint/issues"
+  newIssueUrl = "https://github.com/murraycollier/skint/issues/new/choose"
