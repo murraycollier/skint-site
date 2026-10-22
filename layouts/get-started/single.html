@@ -18,7 +18,7 @@
     <ol>
       <li><a href="#requirements">What you need</a></li>
       <li><a href="#install-docker">1. Install Docker</a></li>
-      <li><a href="#download">2. Download and unzip</a></li>
+      <li><a href="#download">2. Download</a></li>
       <li><a href="#configure">3. Configure</a></li>
       <li><a href="#start">4. Start it</a></li>
       <li><a href="#figures">5. Load your figures</a></li>
@@ -82,10 +82,26 @@ docker run --rm hello-world</code></pre>
       <div class="g-step">
         <span class="g-num">2</span>
         <div>
-          <h2>Download and unzip</h2>
-          <p>Get the single zip. It contains the app source, the Dockerfile, <code>docker-compose.yml</code> and <code>.env.example</code>.</p>
-          <p><a class="btn btn--small" href="https://github.com/murraycollier/skint/releases/latest/download/skint.zip">Download skint.zip</a></p>
-          <p>Unzip it into a new folder, then open a terminal in that folder for the next steps.</p>
+          <h2>Download</h2>
+          <p>Choose one. The image is quickest, because nothing has to be built on your machine.</p>
+          <div class="g-options">
+            <article class="g-card">
+              <p class="g-tag">Recommended</p>
+              <h3>Use the published image</h3>
+              <p>Download the compose file and settings, then pull the image in step 4.</p>
+              <pre><code>mkdir skint && cd skint
+curl -LO https://github.com/murraycollier/skint/releases/latest/download/docker-compose.image.yml
+curl -LO https://github.com/murraycollier/skint/releases/latest/download/env.example
+mv docker-compose.image.yml docker-compose.yml</code></pre>
+            </article>
+            <article class="g-card">
+              <p class="g-tag">Build from source</p>
+              <h3>Download the full app</h3>
+              <p>Includes the source, Dockerfile and compose file. Step 4 builds it locally.</p>
+              <p><a class="btn btn--small" href="https://github.com/murraycollier/skint/releases/latest/download/skint.zip">Download skint.zip</a></p>
+              <p>Unzip it into a new folder, then open a terminal there.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -123,7 +139,12 @@ docker run --rm hello-world</code></pre>
         <span class="g-num">4</span>
         <div>
           <h2>Start it</h2>
-          <p>Run this in the folder with <code>docker-compose.yml</code>. The first build takes a minute or two.</p>
+          <p>Run this in the folder with <code>docker-compose.yml</code>.</p>
+          <p class="g-label">If you used the published image</p>
+          <pre><code>docker compose pull
+docker compose up -d</code></pre>
+          <p class="g-label">If you built from source</p>
+          <p>The first build takes a minute or two.</p>
           <pre><code>docker compose up -d --build</code></pre>
           <p>Then open <a href="http://localhost:8080" rel="noopener">http://localhost:8080</a> in your browser.</p>
           <p class="g-label">Useful commands</p>
