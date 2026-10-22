@@ -2,10 +2,10 @@
 <header class="guide-hero">
   <div class="wrap">
     <p class="eyebrow">Setup guide</p>
-    <h1>Get Skint running in about ten minutes</h1>
-    <p class="lead">Install Docker, unzip Skint, and open it at <code>localhost:8080</code>. Each step stands on its own, so jump straight to where you are.</p>
+    <h1>Get Skint running in about five minutes</h1>
+    <p class="lead">Install Docker, download two small files, pull the published image, and open Skint at <code>localhost:8080</code>. Each step stands on its own, so jump straight to where you are.</p>
     <ul class="guide-meta" aria-label="At a glance">
-      <li>About 10 minutes</li>
+      <li>About 5 minutes</li>
       <li>Needs Docker</li>
       <li>Opens on port 8080</li>
     </ul>
@@ -18,11 +18,12 @@
     <ol>
       <li><a href="#requirements">What you need</a></li>
       <li><a href="#install-docker">1. Install Docker</a></li>
-      <li><a href="#download">2. Download</a></li>
+      <li><a href="#download">2. Download the files</a></li>
       <li><a href="#configure">3. Configure</a></li>
       <li><a href="#start">4. Start it</a></li>
       <li><a href="#figures">5. Load your figures</a></li>
       <li><a href="#household">6. Add the household</a></li>
+      <li><a href="#update">Updating</a></li>
       <li><a href="#proxy">Behind a reverse proxy</a></li>
       <li><a href="#data">Keep your data safe</a></li>
     </ol>
@@ -82,26 +83,12 @@ docker run --rm hello-world</code></pre>
       <div class="g-step">
         <span class="g-num">2</span>
         <div>
-          <h2>Download</h2>
-          <p>Choose one. The image is quickest, because nothing has to be built on your machine.</p>
-          <div class="g-options">
-            <article class="g-card">
-              <p class="g-tag">Recommended</p>
-              <h3>Use the published image</h3>
-              <p>Download the compose file and settings, then pull the image in step 4.</p>
-              <pre><code>mkdir skint && cd skint
-curl -LO https://github.com/murraycollier/skint/releases/latest/download/docker-compose.image.yml
-curl -Lo .env.example https://github.com/murraycollier/skint/releases/latest/download/env.example
-mv docker-compose.image.yml docker-compose.yml</code></pre>
-            </article>
-            <article class="g-card">
-              <p class="g-tag">Build from source</p>
-              <h3>Download the full app</h3>
-              <p>Includes the source, Dockerfile and compose file. Step 4 builds it locally.</p>
-              <p><a class="btn btn--small" href="https://github.com/murraycollier/skint/releases/latest/download/skint.zip">Download skint.zip</a></p>
-              <p>Unzip it into a new folder, then open a terminal there.</p>
-            </article>
-          </div>
+          <h2>Download the files</h2>
+          <p>Make a folder for Skint, then download the compose file and the settings file into it.</p>
+          <pre><code>mkdir skint && cd skint
+curl -Lo docker-compose.yml https://github.com/murraycollier/skint/releases/latest/download/docker-compose.image.yml
+curl -Lo .env.example https://github.com/murraycollier/skint/releases/latest/download/env.example</code></pre>
+          <p>Both commands run from the same folder. Everything else happens in that folder too.</p>
         </div>
       </div>
     </section>
@@ -111,7 +98,7 @@ mv docker-compose.image.yml docker-compose.yml</code></pre>
         <span class="g-num">3</span>
         <div>
           <h2>Configure</h2>
-          <p>Copy the example settings file, then edit it in any text editor.</p>
+          <p>Copy the settings file, then edit it in any text editor.</p>
           <pre><code>cp .env.example .env</code></pre>
           <div class="g-table-wrap">
             <table class="g-table">
@@ -125,7 +112,7 @@ mv docker-compose.image.yml docker-compose.yml</code></pre>
             </table>
           </div>
           <div class="g-callout">
-            <strong>Two-step sign-in comes with login.</strong> It isn't a separate setting. Once <code>APP_PASSWORD</code> is set, every account signs in with a password and then a six-digit code from an authenticator app. Set <code>MFA_REMEMBER_DAYS</code> to control how long a trusted browser skips the code.
+            <strong>Two-step sign-in comes with login.</strong> It isn't a separate setting. Once <code>APP_PASSWORD</code> is set, every account signs in with a password and then a six-digit code from an authenticator app.
           </div>
           <div class="g-callout">
             <strong>Tip:</strong> if you set <code>ALLOWED_HOSTS</code>, include <code>localhost</code> too if you'll open Skint from the same machine.
@@ -139,13 +126,9 @@ mv docker-compose.image.yml docker-compose.yml</code></pre>
         <span class="g-num">4</span>
         <div>
           <h2>Start it</h2>
-          <p>Run this in the folder with <code>docker-compose.yml</code>.</p>
-          <p class="g-label">If you used the published image</p>
+          <p>Run these in the folder with <code>docker-compose.yml</code>. The first pull downloads the image, which takes a minute or so.</p>
           <pre><code>docker compose pull
 docker compose up -d</code></pre>
-          <p class="g-label">If you built from source</p>
-          <p>The first build takes a minute or two.</p>
-          <pre><code>docker compose up -d --build</code></pre>
           <p>Then open <a href="http://localhost:8080" rel="noopener">http://localhost:8080</a> in your browser.</p>
           <p class="g-label">Useful commands</p>
           <pre><code>docker compose ps             # check the container is running
@@ -184,6 +167,19 @@ docker compose down           # stop the app (your data is kept)</code></pre>
       </div>
     </section>
 
+    <section class="g-section" id="update">
+      <div class="g-step">
+        <span class="g-num">+</span>
+        <div>
+          <h2>Updating</h2>
+          <p>When a new version is released, pull it and restart. Your data stays in its volume.</p>
+          <pre><code>docker compose pull
+docker compose up -d</code></pre>
+          <p>To check which version you're on, look at the <a href="https://github.com/murraycollier/skint/releases" rel="noopener">releases page</a>. The compose file pins a version, so change its <code>image:</code> line to the new tag before pulling.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="g-section" id="proxy">
       <h2>Behind a reverse proxy</h2>
       <p class="g-intro">Skint listens on port 8000 inside its container. The default setup publishes that as port 8080. If you already run Traefik or nginx, put Skint on your proxy network instead and let the proxy handle HTTPS. Replace <code>skint.example.com</code> with your domain in each example.</p>
@@ -191,10 +187,10 @@ docker compose down           # stop the app (your data is kept)</code></pre>
       <div class="g-card g-card--wide">
         <p class="g-tag">Traefik</p>
         <h3>docker-compose.yml with Traefik labels</h3>
-        <p>Assumes Traefik has a <code>websecure</code> entrypoint, a <code>letsencrypt</code> certificate resolver, and an external Docker network called <code>proxy</code>. The app's own compose file is not in the download.</p>
+        <p>Assumes Traefik has a <code>websecure</code> entrypoint, a <code>letsencrypt</code> certificate resolver, and an external Docker network called <code>proxy</code>. Remove the <code>ports</code> section, because Traefik reaches Skint over the network.</p>
         <pre><code>services:
   skint:
-    build: .
+    image: ghcr.io/murraycollier/skint:1.0.2
     container_name: skint
     restart: unless-stopped
     networks:
@@ -228,7 +224,7 @@ volumes:
         <p>Skint and nginx share a private network. Skint publishes no port, so only nginx can reach it. Put your certificate and key where the paths in <code>nginx.conf</code> point.</p>
         <pre><code>services:
   skint:
-    build: .
+    image: ghcr.io/murraycollier/skint:1.0.2
     container_name: skint
     restart: unless-stopped
     networks:
