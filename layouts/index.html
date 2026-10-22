@@ -6,7 +6,7 @@
     <h1>Your household money, <span class="grad">on one calm screen.</span></h1>
     <p class="lead">Skint replaces the spreadsheet you've been squinting at with a fast dashboard for take-home pay, bills and what's left at the end of the month. It runs in Docker on your own server, and nothing leaves it.</p>
     <div class="cta">
-      <a class="btn" href="#buy">Buy Skint · {{ site.Params.price }}</a>
+      <button class="btn" type="button" data-waitlist>Buy Skint · {{ site.Params.price }}</button>
       <a class="btn btn--ghost" href="#screenshots">See it in action</a>
     </div>
     <ul class="proof" aria-label="Highlights">
@@ -139,7 +139,7 @@
       <div class="price-card">
         <p class="muted">{{ site.Params.priceNote }}</p>
         <p class="price">{{ site.Params.price }}</p>
-        <a class="btn btn--block" href="{{ site.Params.buyUrl }}">Buy Skint</a>
+        <button class="btn btn--block" type="button" data-waitlist>Buy Skint</button>
         <p class="muted small">Questions first? <a href="mailto:{{ site.Params.contactEmail }}">Get in touch</a>.</p>
       </div>
     </div>

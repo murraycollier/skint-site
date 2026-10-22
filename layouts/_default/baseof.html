@@ -24,6 +24,7 @@
     <button class="lightbox__close" type="button" aria-label="Close">Close ✕</button>
     <img alt="" id="lightbox-img">
   </dialog>
+  {{ partial "waitlist.html" . }}
   {{ $js := resources.Get "js/site.js" | minify | fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>
 </body>
