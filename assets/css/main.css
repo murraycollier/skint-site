@@ -843,3 +843,8 @@ p {
     grid-template-columns: 1fr;
   }
 }
+
+.subhead-plain {
+  font-size: 1.6rem;
+  margin: 56px 0 12px;
+}
