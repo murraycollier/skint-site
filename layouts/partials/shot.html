@@ -1,0 +1,13 @@
+{{- /* Renders a screenshot inside a frame. Params: src, alt, caption, phone (bool), wide (bool) */ -}}
+{{- $img := resources.Get (printf "images/shots/%s" .src) -}}
+{{- $w := cond (.phone) 760 1400 -}}
+{{- $web := $img.Resize (printf "%dx webp q85" $w) -}}
+<figure class="shot{{ if .phone }} shot--phone{{ end }}{{ if .wide }} shot--wide{{ end }}">
+  {{- if not .phone }}
+  <div class="shot__chrome" aria-hidden="true"><span></span><span></span><span></span></div>
+  {{- end }}
+  <button class="shot__open" type="button" data-full="{{ $web.RelPermalink }}" data-alt="{{ .alt }}" aria-label="Open screenshot: {{ .alt }}">
+    <img src="{{ $web.RelPermalink }}" alt="{{ .alt }}" width="{{ $web.Width }}" height="{{ $web.Height }}" loading="lazy" decoding="async">
+  </button>
+  {{- with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

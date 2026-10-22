@@ -1,0 +1,19 @@
+<footer class="site-footer">
+  <div class="wrap footer">
+    <div>
+      <a class="brand" href="{{ "/" | relLangURL }}">
+        <img src="{{ "images/logo.svg" | relURL }}" alt="" width="28" height="28">
+        <span>Skint</span>
+      </a>
+      <p class="muted">Household money, kept on your own server.</p>
+    </div>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="/#features">Features</a>
+      <a href="/#screenshots">Screenshots</a>
+      <a href="/get-started/">Get started</a>
+      <a href="/#buy">Buy</a>
+      <a href="mailto:{{ site.Params.contactEmail }}">Contact</a>
+    </nav>
+  </div>
+  <p class="wrap muted small">© {{ now.Year }} Skint. Screenshots use invented figures.</p>
+</footer>

@@ -1,0 +1,174 @@
+{{ define "main" }}
+
+<section class="hero">
+  <div class="wrap hero__inner">
+    <p class="eyebrow">Household money tracker · self-hosted</p>
+    <h1>Your household money, <span class="grad">on one calm screen.</span></h1>
+    <p class="lead">Skint replaces the spreadsheet you've been squinting at with a fast dashboard for take-home pay, bills and what's left at the end of the month. It runs in Docker on your own server, and nothing leaves it.</p>
+    <div class="cta">
+      <a class="btn" href="#buy">Buy Skint · {{ site.Params.price }}</a>
+      <a class="btn btn--ghost" href="#screenshots">See it in action</a>
+    </div>
+    <ul class="proof" aria-label="Highlights">
+      <li>Runs in Docker</li>
+      <li>Two-step sign-in</li>
+      <li>No bank connection needed</li>
+      <li>Works on phones</li>
+    </ul>
+  </div>
+  <div class="wrap hero__shot">
+    {{ partial "shot.html" (dict "src" "dashboard-dark.png" "alt" "Skint overview dashboard in dark mode showing take-home pay, outgoings, money left over and where the pay goes" "wide" true) }}
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="wrap">
+    <header class="section__head">
+      <p class="eyebrow">Features</p>
+      <h2>Everything you check on payday, in one place.</h2>
+      <p class="lead">Skint keeps the parts of the spreadsheet that mattered and wraps them in a dashboard you'll actually open.</p>
+    </header>
+    <div class="grid">
+      {{ range hugo.Data.features }}
+      <article class="card card--{{ .accent }}">
+        <span class="card__dot" aria-hidden="true"></span>
+        <h3>{{ .title }}</h3>
+        <p>{{ .text }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" id="screenshots">
+  <div class="wrap">
+    <header class="section__head">
+      <p class="eyebrow">Screenshots</p>
+      <h2>See where every pound is going.</h2>
+      <p class="lead">Click any screenshot to view it full size. Figures shown are invented.</p>
+    </header>
+
+    <div class="split">
+      <div class="split__text">
+        <h3>The overview</h3>
+        <p>Take-home pay, outgoings and money left over sit at the top. A donut shows where the money goes, the next bills due are listed by date, and a year-ahead chart shows where the balance is heading.</p>
+      </div>
+      {{ partial "shot.html" (dict "src" "dashboard-light.png" "alt" "Overview dashboard in light mode with summary cards, a spending donut, upcoming bills and a year-ahead chart" "wide" true) }}
+    </div>
+
+    <div class="split split--reverse">
+      <div class="split__text">
+        <h3>Every bill, one list</h3>
+        <p>All your direct debits with a colour bar for each category. Search, filter, and switch between monthly and annual costs. Adding a bill takes a few seconds.</p>
+      </div>
+      {{ partial "shot.html" (dict "src" "bills-dark.png" "alt" "Bills page listing direct debits with categories, payers, due dates and amounts" "wide" true) }}
+    </div>
+
+    <div class="split">
+      <div class="split__text">
+        <h3>Set it up your way</h3>
+        <p>Give each person a colour and a photo. Import your spreadsheet, download a JSON backup, or export a formatted Excel workbook. Everything is in Settings.</p>
+      </div>
+      {{ partial "shot.html" (dict "src" "settings-dark.png" "alt" "Settings page with people, colours, backup, restore, Excel export and spreadsheet import" "wide" true) }}
+    </div>
+
+    <h3 class="subhead">Five themes, light or dark</h3>
+    <div class="trio">
+      {{ partial "shot.html" (dict "src" "dashboard-light.png" "alt" "Light theme" "caption" "Light") }}
+      {{ partial "shot.html" (dict "src" "dashboard-dracula.png" "alt" "Dracula theme" "caption" "Dracula") }}
+      {{ partial "shot.html" (dict "src" "dashboard-tokyo.png" "alt" "Tokyo Night theme" "caption" "Tokyo Night") }}
+    </div>
+    <p class="muted small center">Also available: Dark and Solarized Dark.</p>
+
+    <h3 class="subhead">Works on your phone</h3>
+    <div class="phones">
+      {{ partial "shot.html" (dict "src" "dashboard-phone-dark.png" "alt" "Overview on a phone in dark mode with a bottom navigation bar" "phone" true) }}
+      {{ partial "shot.html" (dict "src" "bills-phone-light.png" "alt" "Bills list on a phone in light mode" "phone" true) }}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="self-host">
+  <div class="wrap">
+    <header class="section__head">
+      <p class="eyebrow">Self-hosted and private</p>
+      <h2>Your money stays on your machine.</h2>
+      <p class="lead">Skint runs as a single Docker container and keeps its data in one SQLite file on a volume you control. There are no third-party scripts, fonts or trackers in the app itself.</p>
+    </header>
+    <div class="steps">
+      <div class="step">
+        <span class="step__num">1</span>
+        <h3>Run it with Docker</h3>
+        <p>Copy the example settings file, then start the container with one command.</p>
+      </div>
+      <div class="step">
+        <span class="step__num">2</span>
+        <h3>Load your figures</h3>
+        <p>Import your Expenditure workbook in Settings, or add bills by hand from the dashboard.</p>
+      </div>
+      <div class="step">
+        <span class="step__num">3</span>
+        <h3>Sign in together</h3>
+        <p>Add everyone in the household, each with their own two-step sign-in, and you're set.</p>
+      </div>
+    </div>
+    <ul class="checks">
+      <li>Optional sign-in screen, with a password you choose</li>
+      <li>Two-step sign-in with an authenticator app and eight single-use recovery codes</li>
+      <li>Restrict the app to your own domain names, so raw IP addresses are refused</li>
+      <li>Full JSON backups and an Excel export at any time</li>
+      <li>Runs behind Traefik or any HTTPS reverse proxy</li>
+    </ul>
+    <p><a class="btn btn--ghost" href="/get-started/">Read the setup guide →</a></p>
+  </div>
+</section>
+
+<section class="section section--alt" id="buy">
+  <div class="wrap">
+    <div class="buy">
+      <div>
+        <p class="eyebrow">Get Skint</p>
+        <h2>Own it, run it, keep it.</h2>
+        <p class="lead">Run it on your own server. Setup takes a few minutes with Docker.</p>
+        <ul class="checks">
+          <li>Full dashboard, bills, income and settings</li>
+          <li>Two-step sign-in for every person</li>
+          <li>Backups and Excel export included</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <p class="muted">{{ site.Params.priceNote }}</p>
+        <p class="price">{{ site.Params.price }}</p>
+        <a class="btn btn--block" href="{{ site.Params.buyUrl }}">Buy Skint</a>
+        <p class="muted small">Questions first? <a href="mailto:{{ site.Params.contactEmail }}">Get in touch</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap narrow">
+    <header class="section__head">
+      <p class="eyebrow">Questions</p>
+      <h2>Good to know</h2>
+    </header>
+    <details class="faq">
+      <summary>Do I need to connect my bank?</summary>
+      <p>No. Skint doesn't connect to any bank. You enter bills yourself or import your spreadsheet, so nothing needs access to your accounts.</p>
+    </details>
+    <details class="faq">
+      <summary>Where is my data kept?</summary>
+      <p>In a single SQLite file on a Docker volume on your server. The app makes no outside requests. You can download a full JSON backup at any time.</p>
+    </details>
+    <details class="faq">
+      <summary>Can more than one person use it?</summary>
+      <p>Yes. Everyone in the household has their own sign-in and shares the same figures. If someone loses their phone, an admin can reset their two-step sign-in.</p>
+    </details>
+    <details class="faq">
+      <summary>What do I need to run it?</summary>
+      <p>A machine that can run Docker and Docker Compose. Put it behind HTTPS if you open it beyond your own network.</p>
+    </details>
+  </div>
+</section>
+
+{{ end }}

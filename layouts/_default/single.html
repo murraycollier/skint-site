@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article class="wrap narrow doc">
+  <header class="doc__head">
+    <p class="eyebrow">Setup guide</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+  </header>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}
