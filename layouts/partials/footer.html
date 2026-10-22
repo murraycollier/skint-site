@@ -1,17 +1,17 @@
 <footer class="site-footer">
   <div class="wrap footer">
     <div>
-      <a class="brand" href="{{ "/" | relLangURL }}">
+      <a class="brand" href="{{ "" | relLangURL }}">
         <img src="{{ "images/logo.svg" | relURL }}" alt="" width="28" height="28">
         <span>Skint</span>
       </a>
       <p class="muted">Household money, kept on your own server.</p>
     </div>
     <nav class="footer__links" aria-label="Footer">
-      <a href="/#features">Features</a>
-      <a href="/#screenshots">Screenshots</a>
-      <a href="/get-started/">Get started</a>
-      <a href="/#buy">Buy</a>
+      <a href="{{ "" | relLangURL }}#features">Features</a>
+      <a href="{{ "" | relLangURL }}#screenshots">Screenshots</a>
+      <a href="{{ "get-started/" | relLangURL }}">Get started</a>
+      <a href="{{ "" | relLangURL }}#buy">Buy</a>
       <a href="mailto:{{ site.Params.contactEmail }}">Contact</a>
     </nav>
   </div>
