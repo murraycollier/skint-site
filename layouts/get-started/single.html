@@ -1,0 +1,197 @@
+{{ define "main" }}
+<header class="guide-hero">
+  <div class="wrap">
+    <p class="eyebrow">Setup guide</p>
+    <h1>Get Skint running in about ten minutes</h1>
+    <p class="lead">Install Docker, unzip Skint, and open it at <code>localhost:8080</code>. Each step stands on its own, so jump straight to where you are.</p>
+    <ul class="guide-meta" aria-label="At a glance">
+      <li>About 10 minutes</li>
+      <li>Needs Docker</li>
+      <li>Opens on port 8080</li>
+    </ul>
+  </div>
+</header>
+
+<div class="wrap guide-layout">
+  <aside class="guide-toc" aria-label="On this page">
+    <p class="guide-toc__title">On this page</p>
+    <ol>
+      <li><a href="#requirements">What you need</a></li>
+      <li><a href="#install-docker">1. Install Docker</a></li>
+      <li><a href="#download">2. Download and unzip</a></li>
+      <li><a href="#configure">3. Configure</a></li>
+      <li><a href="#start">4. Start it</a></li>
+      <li><a href="#figures">5. Load your figures</a></li>
+      <li><a href="#household">6. Add the household</a></li>
+      <li><a href="#traefik">Already running Traefik?</a></li>
+      <li><a href="#data">Keep your data safe</a></li>
+    </ol>
+  </aside>
+
+  <div class="guide">
+
+    <section class="g-section" id="requirements">
+      <h2>What you need</h2>
+      <ul class="g-checklist">
+        <li>A computer or home server with <strong>Docker</strong> and <strong>Docker Compose</strong></li>
+        <li>Your Expenditure spreadsheet, if you want to import existing figures</li>
+      </ul>
+    </section>
+
+    <section class="g-section" id="install-docker">
+      <h2>1. Install Docker</h2>
+      <p class="g-intro">Skint runs in Docker. Pick the option for your system. You only need one.</p>
+      <div class="g-options">
+        <article class="g-card">
+          <p class="g-tag">macOS or Windows</p>
+          <h3>Docker Desktop</h3>
+          <ol>
+            <li>Download it from <a href="https://www.docker.com/products/docker-desktop/" rel="noopener">docker.com</a> and install.</li>
+            <li>On Windows it uses WSL 2. If prompted, enable it and restart.</li>
+            <li>Open Docker Desktop and wait until it says it's running.</li>
+          </ol>
+        </article>
+        <article class="g-card">
+          <p class="g-tag">macOS</p>
+          <h3>OrbStack</h3>
+          <ol>
+            <li>Download it from <a href="https://orbstack.dev" rel="noopener">orbstack.dev</a> and open it.</li>
+            <li>Finish setup. It installs the <code>docker</code> and <code>docker compose</code> commands for you.</li>
+          </ol>
+          <p class="g-note">A lighter alternative to Docker Desktop.</p>
+        </article>
+        <article class="g-card">
+          <p class="g-tag">Linux</p>
+          <h3>Docker Engine</h3>
+          <p>On Ubuntu or Debian, install from Docker's repository. Other distros are in <a href="https://docs.docker.com/engine/install/" rel="noopener">Docker's guide</a>.</p>
+          <pre><code>sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo usermod -aG docker $USER</code></pre>
+          <p class="g-note">Sign out and back in after the last line so the group change applies.</p>
+        </article>
+      </div>
+
+      <h3 class="g-subhead" id="check-docker">Check it works</h3>
+      <pre><code>docker --version
+docker compose version
+docker run --rm hello-world</code></pre>
+      <p class="g-note">Use <code>docker compose</code> with a space. The older <code>docker-compose</code> command isn't needed.</p>
+    </section>
+
+    <section class="g-section" id="download">
+      <div class="g-step">
+        <span class="g-num">2</span>
+        <div>
+          <h2>Download and unzip</h2>
+          <p>Get the single zip. It contains the app source, the Dockerfile, <code>docker-compose.yml</code> and <code>.env.example</code>.</p>
+          <p><a class="btn btn--small" href="https://github.com/murraycollier/skint/releases/latest/download/skint.zip">Download skint.zip</a></p>
+          <p>Unzip it into a new folder, then open a terminal in that folder for the next steps.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="g-section" id="configure">
+      <div class="g-step">
+        <span class="g-num">3</span>
+        <div>
+          <h2>Configure</h2>
+          <p>Copy the example settings file, then edit it in any text editor.</p>
+          <pre><code>cp .env.example .env</code></pre>
+          <div class="g-table-wrap">
+            <table class="g-table">
+              <thead><tr><th>Setting</th><th>What it does</th></tr></thead>
+              <tbody>
+                <tr><td><code>APP_PASSWORD</code></td><td>Turns on the sign-in screen. Leave it empty to run without one.</td></tr>
+                <tr><td><code>APP_USER</code></td><td>The username for the sign-in screen. Defaults to <code>admin</code>.</td></tr>
+                <tr><td><code>ALLOWED_HOSTS</code></td><td>Domain names the app answers to, such as <code>skint.example.com,localhost</code>. Empty accepts any address.</td></tr>
+                <tr><td><code>MFA_REMEMBER_DAYS</code></td><td>Days a trusted browser stays signed in without a code. Defaults to 7. Set 0 to ask every time.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="g-callout">
+            <strong>Tip:</strong> if you set <code>ALLOWED_HOSTS</code>, include <code>localhost</code> too if you'll open Skint from the same machine.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="g-section" id="start">
+      <div class="g-step">
+        <span class="g-num">4</span>
+        <div>
+          <h2>Start it</h2>
+          <p>Run this in the folder with <code>docker-compose.yml</code>. The first build takes a minute or two.</p>
+          <pre><code>docker compose up -d --build</code></pre>
+          <p>Then open <a href="http://localhost:8080" rel="noopener">http://localhost:8080</a> in your browser.</p>
+          <p class="g-label">Useful commands</p>
+          <pre><code>docker compose ps             # check the container is running
+docker compose logs -f skint  # follow the app's log
+docker compose restart skint  # restart after changing .env
+docker compose down           # stop the app (your data is kept)</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="g-section" id="figures">
+      <div class="g-step">
+        <span class="g-num">5</span>
+        <div>
+          <h2>Load your figures</h2>
+          <p>On the first run the dashboard offers <strong>Import spreadsheet</strong>. Choose your <code>Expenditure.xlsx</code> in <strong>Settings</strong> and the data loads.</p>
+          <div class="g-callout g-callout--warn">
+            <strong>Heads up:</strong> importing replaces everything stored. Download a backup first if you already have data.
+          </div>
+          <p>Prefer to start fresh? Skip the import and add bills from the <strong>Bills</strong> page.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="g-section" id="household">
+      <div class="g-step">
+        <span class="g-num">6</span>
+        <div>
+          <h2>Add the household</h2>
+          <p>Add each person in <strong>Settings → People</strong>. Everyone then sets up two-step sign-in: they scan a QR code with an authenticator app, enter the first code, and save their eight recovery codes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="g-section" id="traefik">
+      <div class="g-card g-card--wide">
+        <h2>Already running Traefik?</h2>
+        <p>The app's own <code>docker-compose.yml</code> joins an external <code>proxy</code> network and publishes no port, so Traefik can route to it. That file isn't in the download. Write your own compose file along those lines and set <code>ALLOWED_HOSTS</code> to your domain.</p>
+      </div>
+    </section>
+
+    <section class="g-section" id="data">
+      <h2>Keep your data safe</h2>
+      <div class="g-options g-options--three">
+        <article class="g-card">
+          <h3>Back up regularly</h3>
+          <p>Download a JSON backup from <strong>Settings</strong> and keep a copy off the machine.</p>
+        </article>
+        <article class="g-card">
+          <h3>Keep the volume</h3>
+          <p>Don't run <code>docker compose down -v</code>. The <code>-v</code> flag deletes the data volume.</p>
+        </article>
+        <article class="g-card">
+          <h3>Go online safely</h3>
+          <p>If you open Skint beyond your own network, set a password and put it behind HTTPS.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="g-footer-card">
+      <div>
+        <h2>Stuck, or enjoying it?</h2>
+        <p>Ask on Discord, report a bug on GitHub, or buy me a coffee. Skint is free, and a coffee is always appreciated.</p>
+      </div>
+      <div class="g-footer-card__actions">
+        <a class="btn btn--small" href="{{ "" | relLangURL }}#support">Get help</a>
+        <a class="btn btn--small btn--coffee-outline" href="{{ site.Params.coffeeUrl }}" rel="noopener">{{ partial "coffee-icon.html" . }} Buy me a coffee</a>
+      </div>
+    </section>
+
+  </div>
+</div>
+{{ end }}

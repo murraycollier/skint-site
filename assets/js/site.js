@@ -111,7 +111,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 
 // Copy buttons on code blocks in the setup guide.
 (() => {
-  document.querySelectorAll(".prose pre").forEach((pre) => {
+  document.querySelectorAll(".guide pre").forEach((pre) => {
     if (!navigator.clipboard) return;
     const button = document.createElement("button");
     button.type = "button";
@@ -124,4 +124,23 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
     });
     pre.appendChild(button);
   });
+})();
+
+// Setup guide: highlight the contents entry for the section in view.
+(() => {
+  const links = [...document.querySelectorAll(".guide-toc a")];
+  if (!links.length || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((link) => {
+          link.classList.toggle("is-active", link.hash === `#${entry.target.id}`);
+        });
+      });
+    },
+    { rootMargin: "-30% 0px -60% 0px" },
+  );
+  document.querySelectorAll(".guide section[id]").forEach((section) => observer.observe(section));
 })();
