@@ -7,7 +7,7 @@
     <p class="lead">Skint replaces the spreadsheet you've been squinting at with a fast dashboard for take-home pay, bills and what's left at the end of the month. It runs on your own server, and nothing leaves it.</p>
     <div class="cta">
       <a class="btn" href="#download">Download Skint</a>
-      <a class="btn btn--coffee" href="{{ site.Params.coffeeUrl }}" rel="noopener">{{ partial "coffee-icon.html" . }} Buy me a coffee</a>
+      <a class="btn btn--coffee-outline" href="{{ site.Params.coffeeUrl }}" rel="noopener">{{ partial "coffee-icon.html" . }} Buy me a coffee</a>
     </div>
     <ul class="proof" aria-label="Highlights">
       <li>Free to download</li>
@@ -23,14 +23,14 @@
 
 <section class="section" id="features">
   <div class="wrap">
-    <header class="section__head">
+    <header class="section__head reveal">
       <p class="eyebrow">Features</p>
       <h2>Everything you check on payday, in one place.</h2>
       <p class="lead">Skint keeps the parts of the spreadsheet that mattered and wraps them in a dashboard you'll actually open.</p>
     </header>
     <div class="grid">
       {{ range hugo.Data.features }}
-      <article class="card card--{{ .accent }}">
+      <article class="card reveal card--{{ .accent }}">
         <span class="card__icon">{{ partial "feature-icon.html" .icon }}</span>
         <h3>{{ .title }}</h3>
         <p>{{ .text }}</p>
@@ -42,13 +42,13 @@
 
 <section class="section section--alt" id="screenshots">
   <div class="wrap">
-    <header class="section__head">
+    <header class="section__head reveal">
       <p class="eyebrow">Screenshots</p>
       <h2>See where every pound is going.</h2>
       <p class="lead">Click any screenshot to view it full size. Figures shown are invented.</p>
     </header>
 
-    <div class="split">
+    <div class="split reveal">
       <div class="split__text">
         <h3>The overview</h3>
         <p>Take-home pay, outgoings and money left over sit at the top. A donut shows where the money goes, the next bills due are listed by date, and a year-ahead chart shows where the balance is heading.</p>
@@ -56,7 +56,7 @@
       {{ partial "shot.html" (dict "src" "dashboard-solarized.png" "alt" "Overview dashboard in Solarized Dark with summary cards, a spending donut, upcoming bills and a year-ahead chart" "wide" true) }}
     </div>
 
-    <div class="split split--reverse">
+    <div class="split split--reverse reveal">
       <div class="split__text">
         <h3>Every bill, one list</h3>
         <p>All your direct debits with a colour bar for each category. Search, filter, and switch between monthly and annual costs. Adding a bill takes a few seconds.</p>
@@ -64,7 +64,7 @@
       {{ partial "shot.html" (dict "src" "bills-dark.png" "alt" "Bills page listing direct debits with categories, payers, due dates and amounts" "wide" true) }}
     </div>
 
-    <div class="split">
+    <div class="split reveal">
       <div class="split__text">
         <h3>Set it up your way</h3>
         <p>Give each person a colour and a photo. Import your spreadsheet, download a JSON backup, or export a formatted Excel workbook. Everything is in Settings.</p>
@@ -72,16 +72,16 @@
       {{ partial "shot.html" (dict "src" "settings-dark.png" "alt" "Settings page with people, colours, backup, restore, Excel export and spreadsheet import" "wide" true) }}
     </div>
 
-    <h3 class="subhead">Dark themes to match your evening</h3>
-    <div class="trio">
+    <h3 class="subhead reveal">Dark themes to match your evening</h3>
+    <div class="trio reveal">
       {{ partial "shot.html" (dict "src" "dashboard-dark.png" "alt" "Dark theme" "caption" "Dark") }}
       {{ partial "shot.html" (dict "src" "dashboard-dracula.png" "alt" "Dracula theme" "caption" "Dracula") }}
       {{ partial "shot.html" (dict "src" "dashboard-tokyo.png" "alt" "Tokyo Night theme" "caption" "Tokyo Night") }}
     </div>
     <p class="muted small center">Also available: Light and Solarized Dark.</p>
 
-    <h3 class="subhead">Works on your phone</h3>
-    <div class="phones">
+    <h3 class="subhead reveal">Works on your phone</h3>
+    <div class="phones reveal">
       {{ partial "shot.html" (dict "src" "dashboard-phone-dark.png" "alt" "Overview on a phone in dark mode with a bottom navigation bar" "phone" true) }}
       {{ partial "shot.html" (dict "src" "phone-income-dark.png" "alt" "Income page on a phone in dark mode showing take-home pay and each earner's share" "phone" true) }}
     </div>
@@ -90,19 +90,19 @@
 
 <section class="section" id="download">
   <div class="wrap">
-    <header class="section__head">
+    <header class="section__head reveal">
       <p class="eyebrow">Download</p>
       <h2>Get Skint, free.</h2>
       <p class="lead">Grab the app and the setup files, then run it with Docker Compose. Don't have Docker yet? <a href="{{ "get-started/" | relLangURL }}#install-docker">Install it for macOS, Windows or Linux</a>. The full guide is in the <a href="{{ "get-started/" | relLangURL }}">setup guide</a>.</p>
     </header>
-    <div class="download-single">
+    <div class="download-single reveal">
       <a class="download download--main" href="{{ site.Params.releaseUrl }}/skint.zip" download>
         <span class="download__label">Everything you need</span>
         <strong>skint.zip</strong>
         <span class="muted small">The app source, Dockerfile, requirements, <code>docker-compose.yml</code> and <code>.env.example</code>. About 85 KB.</span>
       </a>
     </div>
-    <ol class="quick-steps">
+    <ol class="quick-steps reveal">
       <li>Unzip <code>skint.zip</code> into a new folder.</li>
       <li>Run <code>cp .env.example .env</code>, then edit it if you want a sign-in screen.</li>
       <li>Run <code>docker compose up -d --build</code> and open <code>http://localhost:8080</code>.</li>
@@ -112,12 +112,12 @@
 
 <section class="section section--alt" id="self-host">
   <div class="wrap">
-    <header class="section__head">
+    <header class="section__head reveal">
       <p class="eyebrow">Self-hosted and private</p>
       <h2>Your money stays on your machine.</h2>
       <p class="lead">Skint runs as a single Docker container and keeps its data in one SQLite file on a volume you control. There are no third-party scripts, fonts or trackers in the app itself.</p>
     </header>
-    <ul class="checks">
+    <ul class="checks reveal">
       <li>Optional sign-in screen, with a password you choose</li>
       <li>Two-step sign-in with an authenticator app and eight single-use recovery codes</li>
       <li>Restrict the app to your own domain names, so raw IP addresses are refused</li>
@@ -130,19 +130,19 @@
 
 <section class="section" id="support">
   <div class="wrap">
-    <header class="section__head">
+    <header class="section__head reveal">
       <p class="eyebrow">Support</p>
       <h2>Need a hand, or want to say thanks?</h2>
       <p class="lead">Start with the <a href="{{ "get-started/" | relLangURL }}">setup guide</a>. If you're still stuck, pick whichever suits you below.</p>
     </header>
     <div class="support-grid">
-      <article class="support-card">
+      <article class="support-card reveal">
         <p class="support-card__label">Chat</p>
         <h3>Ask on Discord</h3>
         <p>Get quick answers from other Skint users and share how you've set yours up.</p>
         <a class="btn btn--discord" href="{{ site.Params.discordUrl }}" rel="noopener">Join the Discord</a>
       </article>
-      <article class="support-card">
+      <article class="support-card reveal">
         <p class="support-card__label">Bugs</p>
         <h3>Report an issue</h3>
         <p>Found something broken? Open an issue on GitHub so it can be tracked and fixed.</p>
@@ -151,7 +151,7 @@
           <a class="support-card__link" href="{{ site.Params.issuesUrl }}" rel="noopener">Browse issues →</a>
         </div>
       </article>
-      <article class="support-card">
+      <article class="support-card reveal">
         <p class="support-card__label">Thanks</p>
         <h3>Buy me a coffee</h3>
         <p>Skint is free. If it saves you a spreadsheet or two, a coffee is a lovely thank you.</p>
@@ -163,27 +163,27 @@
 
 <section class="section section--alt">
   <div class="wrap narrow">
-    <header class="section__head">
+    <header class="section__head reveal">
       <p class="eyebrow">Questions</p>
       <h2>Good to know</h2>
     </header>
-    <details class="faq">
+    <details class="faq reveal">
       <summary>Is Skint free?</summary>
       <p>Yes. Download it and run it on your own machine at no cost. A coffee is always welcome but never required.</p>
     </details>
-    <details class="faq">
+    <details class="faq reveal">
       <summary>Do I need to connect my bank?</summary>
       <p>No. Skint doesn't connect to any bank. You enter bills yourself or import your spreadsheet, so nothing needs access to your accounts.</p>
     </details>
-    <details class="faq">
+    <details class="faq reveal">
       <summary>Where is my data kept?</summary>
       <p>In a single SQLite file on a Docker volume on your server. The app makes no outside requests. You can download a full JSON backup at any time.</p>
     </details>
-    <details class="faq">
+    <details class="faq reveal">
       <summary>Can more than one person use it?</summary>
       <p>Yes. Everyone in the household has their own sign-in and shares the same figures. If someone loses their phone, an admin can reset their two-step sign-in.</p>
     </details>
-    <details class="faq">
+    <details class="faq reveal">
       <summary>What do I need to run it?</summary>
       <p>A machine that can run Docker and Docker Compose. Put it behind HTTPS if you open it beyond your own network.</p>
     </details>

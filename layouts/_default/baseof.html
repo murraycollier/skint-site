@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ site.Language.Locale }}">
 <head>
+  <script>document.documentElement.classList.add("js")</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if .IsHome }}{{ site.Title }} · {{ site.Params.tagline }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
@@ -8,6 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Skint">
+  <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}: {{ site.Params.tagline }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}">
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ with resources.Get "images/shots/dashboard-dark.png" }}{{ with .Resize "1200x jpg q85" }}<meta property="og:image" content="{{ .Permalink }}">{{ end }}{{ end }}
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="{{ "images/logo.svg" | relURL }}" type="image/svg+xml">
   {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

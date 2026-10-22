@@ -1,15 +1,20 @@
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="wrap nav">
     <a class="brand" href="{{ "" | relLangURL }}" aria-label="Skint home">
       <img src="{{ "images/logo.svg" | relURL }}" alt="" width="36" height="36">
       <span>Skint</span>
     </a>
-    <nav class="nav__links" aria-label="Main">
+    <nav class="nav__links" id="site-nav" aria-label="Main">
       <a href="{{ "" | relLangURL }}#features">Features</a>
       <a href="{{ "" | relLangURL }}#screenshots">Screenshots</a>
       <a href="{{ "get-started/" | relLangURL }}">Setup guide</a>
       <a href="{{ "" | relLangURL }}#support">Support</a>
     </nav>
-    <a class="btn btn--small" href="{{ "" | relLangURL }}#download">Download</a>
+    <div class="nav__end">
+      <a class="btn btn--small" href="{{ "" | relLangURL }}#download">Download</a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
