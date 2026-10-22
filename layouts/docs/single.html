@@ -1,0 +1,24 @@
+{{ define "main" }}
+<header class="guide-hero">
+  <div class="wrap">
+    <p class="eyebrow">Documentation</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+  </div>
+</header>
+
+<div class="wrap guide-layout">
+  <aside class="guide-toc" aria-label="Documentation pages">
+    <p class="guide-toc__title">Documentation</p>
+    <ol>
+      {{ range (site.GetPage "/docs").Pages }}
+      <li><a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $.RelPermalink }} class="is-active" aria-current="page"{{ end }}>{{ .Title }}</a></li>
+      {{ end }}
+    </ol>
+  </aside>
+
+  <div class="guide">
+    {{ .Content }}
+  </div>
+</div>
+{{ end }}

@@ -101,12 +101,15 @@ docker run --rm hello-world</code></pre>
             <table class="g-table">
               <thead><tr><th>Setting</th><th>What it does</th></tr></thead>
               <tbody>
-                <tr><td><code>APP_PASSWORD</code></td><td>Turns on the sign-in screen. Leave it empty to run without one.</td></tr>
+                <tr><td><code>APP_PASSWORD</code></td><td>Turns on the sign-in screen and two-step sign-in. Leave it empty to run without either.</td></tr>
                 <tr><td><code>APP_USER</code></td><td>The username for the sign-in screen. Defaults to <code>admin</code>.</td></tr>
                 <tr><td><code>ALLOWED_HOSTS</code></td><td>Domain names the app answers to, such as <code>skint.example.com,localhost</code>. Empty accepts any address.</td></tr>
                 <tr><td><code>MFA_REMEMBER_DAYS</code></td><td>Days a trusted browser stays signed in without a code. Defaults to 7. Set 0 to ask every time.</td></tr>
               </tbody>
             </table>
+          </div>
+          <div class="g-callout">
+            <strong>Two-step sign-in comes with login.</strong> It isn't a separate setting. Once <code>APP_PASSWORD</code> is set, every account signs in with a password and then a six-digit code from an authenticator app. Set <code>MFA_REMEMBER_DAYS</code> to control how long a trusted browser skips the code.
           </div>
           <div class="g-callout">
             <strong>Tip:</strong> if you set <code>ALLOWED_HOSTS</code>, include <code>localhost</code> too if you'll open Skint from the same machine.
@@ -151,7 +154,11 @@ docker compose down           # stop the app (your data is kept)</code></pre>
         <span class="g-num">6</span>
         <div>
           <h2>Add the household</h2>
-          <p>Add each person in <strong>Settings → People</strong>. Everyone then sets up two-step sign-in: they scan a QR code with an authenticator app, enter the first code, and save their eight recovery codes.</p>
+          <p>Add each person in <strong>Settings → People</strong>.</p>
+          <p>With login on, everyone then sets up two-step sign-in on their first sign-in: they scan a QR code with an authenticator app, enter the first code, and save their eight recovery codes. Each recovery code works once.</p>
+          <div class="g-callout g-callout--warn">
+            <strong>Lost a phone?</strong> An admin can reset that person's two-step sign-in under <strong>Settings → People → Reset 2-step</strong>. They set it up again at their next sign-in.
+          </div>
         </div>
       </div>
     </section>
