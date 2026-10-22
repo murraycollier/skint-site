@@ -1790,3 +1790,14 @@ p {
     height: 34px;
   }
 }
+
+/* Buttons inside the guide keep their own text colour */
+
+.guide .btn {
+  color: #fff;
+  text-decoration: none;
+}
+
+.guide .btn--coffee-outline {
+  color: #ffdd00;
+}

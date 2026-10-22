@@ -23,7 +23,7 @@
       <li><a href="#start">4. Start it</a></li>
       <li><a href="#figures">5. Load your figures</a></li>
       <li><a href="#household">6. Add the household</a></li>
-      <li><a href="#traefik">Already running Traefik?</a></li>
+      <li><a href="#proxy">Behind a reverse proxy</a></li>
       <li><a href="#data">Keep your data safe</a></li>
     </ol>
   </aside>
@@ -156,10 +156,104 @@ docker compose down           # stop the app (your data is kept)</code></pre>
       </div>
     </section>
 
-    <section class="g-section" id="traefik">
+    <section class="g-section" id="proxy">
+      <h2>Behind a reverse proxy</h2>
+      <p class="g-intro">Skint listens on port 8000 inside its container. The default setup publishes that as port 8080. If you already run Traefik or nginx, put Skint on your proxy network instead and let the proxy handle HTTPS. Replace <code>skint.example.com</code> with your domain in each example.</p>
+
       <div class="g-card g-card--wide">
-        <h2>Already running Traefik?</h2>
-        <p>The app's own <code>docker-compose.yml</code> joins an external <code>proxy</code> network and publishes no port, so Traefik can route to it. That file isn't in the download. Write your own compose file along those lines and set <code>ALLOWED_HOSTS</code> to your domain.</p>
+        <p class="g-tag">Traefik</p>
+        <h3>docker-compose.yml with Traefik labels</h3>
+        <p>Assumes Traefik has a <code>websecure</code> entrypoint, a <code>letsencrypt</code> certificate resolver, and an external Docker network called <code>proxy</code>. The app's own compose file is not in the download.</p>
+        <pre><code>services:
+  skint:
+    build: .
+    container_name: skint
+    restart: unless-stopped
+    networks:
+      - proxy
+    environment:
+      APP_USER: ${APP_USER:-admin}
+      APP_PASSWORD: ${APP_PASSWORD:-}
+      ALLOWED_HOSTS: skint.example.com
+      MFA_REMEMBER_DAYS: ${MFA_REMEMBER_DAYS:-7}
+    volumes:
+      - skint-data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.skint.rule=Host(`skint.example.com`)"
+      - "traefik.http.routers.skint.entrypoints=websecure"
+      - "traefik.http.routers.skint.tls.certresolver=letsencrypt"
+      - "traefik.http.services.skint.loadbalancer.server.port=8000"
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  skint-data:</code></pre>
+      </div>
+
+      <div class="g-card g-card--wide">
+        <p class="g-tag">nginx</p>
+        <h3>docker-compose.yml with nginx in front</h3>
+        <p>Skint and nginx share a private network. Skint publishes no port, so only nginx can reach it. Put your certificate and key where the paths in <code>nginx.conf</code> point.</p>
+        <pre><code>services:
+  skint:
+    build: .
+    container_name: skint
+    restart: unless-stopped
+    networks:
+      - web
+    environment:
+      APP_USER: ${APP_USER:-admin}
+      APP_PASSWORD: ${APP_PASSWORD:-}
+      ALLOWED_HOSTS: skint.example.com
+      MFA_REMEMBER_DAYS: ${MFA_REMEMBER_DAYS:-7}
+    volumes:
+      - skint-data:/data
+
+  nginx:
+    image: nginx:stable
+    container_name: skint-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/skint.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    networks:
+      - web
+    depends_on:
+      - skint
+
+networks:
+  web:
+
+volumes:
+  skint-data:</code></pre>
+        <p class="g-label">nginx.conf</p>
+        <pre><code>server {
+    listen 80;
+    server_name skint.example.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name skint.example.com;
+
+    ssl_certificate     /etc/nginx/certs/fullchain.pem;
+    ssl_certificate_key /etc/nginx/certs/privkey.pem;
+
+    location / {
+        proxy_pass http://skint:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}</code></pre>
       </div>
     </section>
 
