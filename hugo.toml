@@ -9,5 +9,5 @@ disableKinds = ["taxonomy", "term", "RSS"]
 [params]
   tagline = "Your household money, on one calm screen."
   description = "Skint is a free, self-hosted household money tracker. See take-home pay, bills and what's left at the end of the month, on your own server."
-  # Replace with your Buy Me a Coffee page, e.g. https://www.buymeacoffee.com/yourname
-  coffeeUrl = "https://www.buymeacoffee.com/YOURNAME"
+  # Buy Me a Coffee page
+  coffeeUrl = "https://buymeacoffee.com/murraycollier"

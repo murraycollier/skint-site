@@ -121,4 +121,4 @@ The app's own `docker-compose.yml`, which is not in the download, joins an exter
 
 ## Enjoying it?
 
-Skint is free. If it's useful, you can [buy me a coffee](https://www.buymeacoffee.com/YOURNAME).
+Skint is free. If it's useful, you can [buy me a coffee](https://buymeacoffee.com/murraycollier).
