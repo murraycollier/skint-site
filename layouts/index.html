@@ -139,17 +139,34 @@
 </section>
 
 <section class="section" id="support">
-  <div class="wrap narrow center">
-    <p class="eyebrow">Support</p>
-    <h2>Enjoying Skint?</h2>
-    <p class="lead">Skint is free. If it saves you a spreadsheet or two, you can buy me a coffee to say thanks.</p>
-    <p><a class="btn btn--coffee" href="{{ site.Params.coffeeUrl }}" rel="noopener">{{ partial "coffee-icon.html" . }} Buy me a coffee</a></p>
-
-    <h2 class="subhead-plain">Need help?</h2>
-    <p class="lead">Stuck on setup, or found a bug? Check the <a href="{{ "get-started/" | relLangURL }}">setup guide</a> first, then open an issue on GitHub.</p>
-    <div class="cta">
-      <a class="btn btn--ghost" href="{{ site.Params.newIssueUrl }}" rel="noopener">Report an issue</a>
-      <a class="btn btn--ghost" href="{{ site.Params.issuesUrl }}" rel="noopener">Browse open issues</a>
+  <div class="wrap">
+    <header class="section__head">
+      <p class="eyebrow">Support</p>
+      <h2>Need a hand, or want to say thanks?</h2>
+      <p class="lead">Start with the <a href="{{ "get-started/" | relLangURL }}">setup guide</a>. If you're still stuck, pick whichever suits you below.</p>
+    </header>
+    <div class="support-grid">
+      <article class="support-card">
+        <p class="support-card__label">Chat</p>
+        <h3>Ask on Discord</h3>
+        <p>Get quick answers from other Skint users and share how you've set yours up.</p>
+        <a class="btn btn--discord" href="{{ site.Params.discordUrl }}" rel="noopener">Join the Discord</a>
+      </article>
+      <article class="support-card">
+        <p class="support-card__label">Bugs</p>
+        <h3>Report an issue</h3>
+        <p>Found something broken? Open an issue on GitHub so it can be tracked and fixed.</p>
+        <div class="support-card__actions">
+          <a class="btn btn--ghost" href="{{ site.Params.newIssueUrl }}" rel="noopener">New issue</a>
+          <a class="support-card__link" href="{{ site.Params.issuesUrl }}" rel="noopener">Browse issues →</a>
+        </div>
+      </article>
+      <article class="support-card">
+        <p class="support-card__label">Thanks</p>
+        <h3>Buy me a coffee</h3>
+        <p>Skint is free. If it saves you a spreadsheet or two, a coffee is a lovely thank you.</p>
+        <a class="btn btn--coffee" href="{{ site.Params.coffeeUrl }}" rel="noopener">{{ partial "coffee-icon.html" . }} Buy me a coffee</a>
+      </article>
     </div>
   </div>
 </section>

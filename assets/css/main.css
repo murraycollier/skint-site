@@ -846,7 +846,82 @@ p {
   }
 }
 
-.subhead-plain {
-  font-size: 1.6rem;
-  margin: 56px 0 12px;
+
+/* Support */
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.support-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.support-card h3 {
+  margin: 0;
+}
+
+.support-card p {
+  color: var(--muted);
+  margin: 0 0 8px;
+  font-size: 0.98rem;
+}
+
+.support-card .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.support-card__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin: 0;
+}
+
+.support-card__actions {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.support-card__actions .btn {
+  margin-top: 0;
+}
+
+.support-card__link {
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.support-card__link:hover {
+  color: var(--text);
+}
+
+.btn--discord {
+  background: #5865f2;
+  box-shadow: 0 10px 30px -12px rgba(88, 101, 242, 0.7);
+}
+
+.btn--discord:hover {
+  box-shadow: 0 14px 36px -12px rgba(88, 101, 242, 0.9);
+}
+
+@media (max-width: 900px) {
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
 }

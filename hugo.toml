@@ -16,3 +16,4 @@ disableKinds = ["taxonomy", "term", "RSS"]
   releaseUrl = "https://github.com/murraycollier/skint/releases/latest/download"
   issuesUrl = "https://github.com/murraycollier/skint/issues"
   newIssueUrl = "https://github.com/murraycollier/skint/issues/new/choose"
+  discordUrl = "https://discord.com/invite/9ax2uZcjt"
