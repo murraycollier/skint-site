@@ -8,10 +8,6 @@ disableKinds = ["taxonomy", "term", "RSS"]
 
 [params]
   tagline = "Your household money, on one calm screen."
-  description = "Skint is a self-hosted household money tracker. See your take-home pay, bills and what's left at the end of the month, on your own server."
-  # Placeholders. Replace before launch.
-  price = "£25"
-  priceNote = "One-off price, includes updates"
-  # Waitlist signups are posted to this ntfy topic on the home server, which sends a push notification.
-  waitlistUrl = "https://notis.technomuz.com/muzalerts"
-  contactEmail = "you@example.com"
+  description = "Skint is a free, self-hosted household money tracker. See take-home pay, bills and what's left at the end of the month, on your own server."
+  # Replace with your Buy Me a Coffee page, e.g. https://www.buymeacoffee.com/yourname
+  coffeeUrl = "https://www.buymeacoffee.com/YOURNAME"

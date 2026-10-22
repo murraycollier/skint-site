@@ -2,18 +2,18 @@
 
 <section class="hero">
   <div class="wrap hero__inner">
-    <p class="eyebrow">Household money tracker · self-hosted</p>
+    <p class="eyebrow">Free · self-hosted · runs in Docker</p>
     <h1>Your household money, <span class="grad">on one calm screen.</span></h1>
-    <p class="lead">Skint replaces the spreadsheet you've been squinting at with a fast dashboard for take-home pay, bills and what's left at the end of the month. It runs in Docker on your own server, and nothing leaves it.</p>
+    <p class="lead">Skint replaces the spreadsheet you've been squinting at with a fast dashboard for take-home pay, bills and what's left at the end of the month. It runs on your own server, and nothing leaves it.</p>
     <div class="cta">
-      <button class="btn" type="button" data-waitlist>Buy Skint · {{ site.Params.price }}</button>
-      <a class="btn btn--ghost" href="#screenshots">See it in action</a>
+      <a class="btn" href="#download">Download Skint</a>
+      <a class="btn btn--coffee" href="{{ site.Params.coffeeUrl }}" rel="noopener">{{ partial "coffee-icon.html" . }} Buy me a coffee</a>
     </div>
     <ul class="proof" aria-label="Highlights">
+      <li>Free to download</li>
       <li>Runs in Docker</li>
       <li>Two-step sign-in</li>
       <li>No bank connection needed</li>
-      <li>Works on phones</li>
     </ul>
   </div>
   <div class="wrap hero__shot">
@@ -88,30 +88,45 @@
   </div>
 </section>
 
-<section class="section" id="self-host">
+<section class="section" id="download">
+  <div class="wrap">
+    <header class="section__head">
+      <p class="eyebrow">Download</p>
+      <h2>Get Skint, free.</h2>
+      <p class="lead">Grab the app and the setup files, then run it with Docker Compose. The full guide is in the <a href="{{ "get-started/" | relLangURL }}">setup guide</a>.</p>
+    </header>
+    <div class="downloads">
+      <a class="download" href="{{ "downloads/skint.zip" | relURL }}" download>
+        <span class="download__label">Full app</span>
+        <strong>skint.zip</strong>
+        <span class="muted small">Source, Dockerfile and requirements. About 85 KB.</span>
+      </a>
+      <a class="download" href="{{ "downloads/docker-compose.yml" | relURL }}" download>
+        <span class="download__label">Compose file</span>
+        <strong>docker-compose.yml</strong>
+        <span class="muted small">Publishes Skint on port 8080.</span>
+      </a>
+      <a class="download" href="{{ "downloads/env.example" | relURL }}" download>
+        <span class="download__label">Settings</span>
+        <strong>env.example</strong>
+        <span class="muted small">Copy to <code>.env</code> and edit.</span>
+      </a>
+    </div>
+    <ol class="quick-steps">
+      <li>Unzip <code>skint.zip</code> and put <code>docker-compose.yml</code> in the same folder.</li>
+      <li>Run <code>cp .env.example .env</code>, then edit it if you want a sign-in screen.</li>
+      <li>Run <code>docker compose up -d --build</code> and open <code>http://localhost:8080</code>.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section--alt" id="self-host">
   <div class="wrap">
     <header class="section__head">
       <p class="eyebrow">Self-hosted and private</p>
       <h2>Your money stays on your machine.</h2>
       <p class="lead">Skint runs as a single Docker container and keeps its data in one SQLite file on a volume you control. There are no third-party scripts, fonts or trackers in the app itself.</p>
     </header>
-    <div class="steps">
-      <div class="step">
-        <span class="step__num">1</span>
-        <h3>Run it with Docker</h3>
-        <p>Copy the example settings file, then start the container with one command.</p>
-      </div>
-      <div class="step">
-        <span class="step__num">2</span>
-        <h3>Load your figures</h3>
-        <p>Import your Expenditure workbook in Settings, or add bills by hand from the dashboard.</p>
-      </div>
-      <div class="step">
-        <span class="step__num">3</span>
-        <h3>Sign in together</h3>
-        <p>Add everyone in the household, each with their own two-step sign-in, and you're set.</p>
-      </div>
-    </div>
     <ul class="checks">
       <li>Optional sign-in screen, with a password you choose</li>
       <li>Two-step sign-in with an authenticator app and eight single-use recovery codes</li>
@@ -123,35 +138,25 @@
   </div>
 </section>
 
-<section class="section section--alt" id="buy">
-  <div class="wrap">
-    <div class="buy">
-      <div>
-        <p class="eyebrow">Get Skint</p>
-        <h2>Own it, run it, keep it.</h2>
-        <p class="lead">Run it on your own server. Setup takes a few minutes with Docker.</p>
-        <ul class="checks">
-          <li>Full dashboard, bills, income and settings</li>
-          <li>Two-step sign-in for every person</li>
-          <li>Backups and Excel export included</li>
-        </ul>
-      </div>
-      <div class="price-card">
-        <p class="muted">{{ site.Params.priceNote }}</p>
-        <p class="price">{{ site.Params.price }}</p>
-        <button class="btn btn--block" type="button" data-waitlist>Buy Skint</button>
-        <p class="muted small">Questions first? <a href="mailto:{{ site.Params.contactEmail }}">Get in touch</a>.</p>
-      </div>
-    </div>
+<section class="section" id="support">
+  <div class="wrap narrow center">
+    <p class="eyebrow">Support</p>
+    <h2>Enjoying Skint?</h2>
+    <p class="lead">Skint is free. If it saves you a spreadsheet or two, you can buy me a coffee to say thanks.</p>
+    <p><a class="btn btn--coffee" href="{{ site.Params.coffeeUrl }}" rel="noopener">{{ partial "coffee-icon.html" . }} Buy me a coffee</a></p>
   </div>
 </section>
 
-<section class="section">
+<section class="section section--alt">
   <div class="wrap narrow">
     <header class="section__head">
       <p class="eyebrow">Questions</p>
       <h2>Good to know</h2>
     </header>
+    <details class="faq">
+      <summary>Is Skint free?</summary>
+      <p>Yes. Download it and run it on your own machine at no cost. A coffee is always welcome but never required.</p>
+    </details>
     <details class="faq">
       <summary>Do I need to connect my bank?</summary>
       <p>No. Skint doesn't connect to any bank. You enter bills yourself or import your spreadsheet, so nothing needs access to your accounts.</p>

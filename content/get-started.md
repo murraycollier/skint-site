@@ -1,39 +1,22 @@
 ---
 title: Setup guide
-description: Run Skint with Docker Compose in a few minutes, then load your figures and add the household.
+description: Download Skint, run it with Docker Compose in a few minutes, then load your figures and add the household.
 ---
 
 ## What you need
 
 - A computer or home server with **Docker** and **Docker Compose** installed
-- The Skint app folder you received when you bought it
 - Your Expenditure spreadsheet, if you want to import existing figures
 
-## 1. Create the compose file
+## 1. Download the files
 
-In the Skint folder, create a file called `docker-compose.yml` with this content:
+Download the full app, or just the compose file and settings if you already have the source:
 
-```yaml
-services:
-  skint:
-    build: .
-    container_name: skint
-    restart: unless-stopped
-    ports:
-      - "8080:8000"
-    environment:
-      APP_USER: ${APP_USER:-admin}
-      APP_PASSWORD: ${APP_PASSWORD:-}
-      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-}
-      MFA_REMEMBER_DAYS: ${MFA_REMEMBER_DAYS:-7}
-    volumes:
-      - skint-data:/data
+- [skint.zip](/downloads/skint.zip): the app source, Dockerfile and requirements
+- [docker-compose.yml](/downloads/docker-compose.yml): publishes Skint on port 8080
+- [env.example](/downloads/env.example): the settings file, to copy to `.env`
 
-volumes:
-  skint-data:
-```
-
-This publishes Skint on port 8080 of your machine and stores the database in a Docker volume called `skint-data`, so it survives restarts and rebuilds.
+Unzip `skint.zip` into a new folder, then put `docker-compose.yml` in the same folder.
 
 ## 2. Configure
 
@@ -83,7 +66,7 @@ Add each person in **Settings → People**. Everyone then sets up two-step sign-
 
 ## Already running Traefik?
 
-The `docker-compose.yml` in the app folder is set up for a Traefik proxy. It joins an external `proxy` network and publishes no port, so Traefik can route to it. If that's your setup, use that file instead of the one above, and set `ALLOWED_HOSTS` to your domain.
+The app's own `docker-compose.yml`, which is not in the download, joins an external `proxy` network and publishes no port, so Traefik can route to it. If that's your setup, write your own compose file along those lines and set `ALLOWED_HOSTS` to your domain.
 
 ## Keep your data safe
 
@@ -91,4 +74,6 @@ The `docker-compose.yml` in the app folder is set up for a Traefik proxy. It joi
 - Don't run `docker compose down -v`. The `-v` flag deletes the data volume.
 - If you open Skint beyond your own network, set a password and put it behind HTTPS.
 
-Need help? [Get in touch](mailto:you@example.com).
+## Enjoying it?
+
+Skint is free. If it's useful, you can [buy me a coffee](https://www.buymeacoffee.com/YOURNAME).

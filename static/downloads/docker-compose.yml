@@ -1,0 +1,17 @@
+services:
+  skint:
+    build: .
+    container_name: skint
+    restart: unless-stopped
+    ports:
+      - "8080:8000"
+    environment:
+      APP_USER: ${APP_USER:-admin}
+      APP_PASSWORD: ${APP_PASSWORD:-}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-}
+      MFA_REMEMBER_DAYS: ${MFA_REMEMBER_DAYS:-7}
+    volumes:
+      - skint-data:/data
+
+volumes:
+  skint-data:
