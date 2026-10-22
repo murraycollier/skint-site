@@ -10,7 +10,7 @@ disableKinds = ["taxonomy", "term", "RSS"]
   tagline = "Your household money, on one calm screen."
   description = "Skint is a self-hosted household money tracker. See your take-home pay, bills and what's left at the end of the month, on your own server."
   # Placeholders. Replace before launch.
-  price = "£XX"
+  price = "£25"
   priceNote = "One-off price, includes updates"
   buyUrl = "mailto:you@example.com?subject=Skint"
   contactEmail = "you@example.com"
