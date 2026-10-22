@@ -95,25 +95,15 @@
       <h2>Get Skint, free.</h2>
       <p class="lead">Grab the app and the setup files, then run it with Docker Compose. Don't have Docker yet? <a href="{{ "get-started/" | relLangURL }}#install-docker">Install it for macOS, Windows or Linux</a>. The full guide is in the <a href="{{ "get-started/" | relLangURL }}">setup guide</a>.</p>
     </header>
-    <div class="downloads">
-      <a class="download" href="{{ site.Params.releaseUrl }}/skint.zip" download>
-        <span class="download__label">Full app</span>
+    <div class="download-single">
+      <a class="download download--main" href="{{ site.Params.releaseUrl }}/skint.zip" download>
+        <span class="download__label">Everything you need</span>
         <strong>skint.zip</strong>
-        <span class="muted small">Source, Dockerfile and requirements. About 85 KB.</span>
-      </a>
-      <a class="download" href="{{ site.Params.releaseUrl }}/docker-compose.yml" download>
-        <span class="download__label">Compose file</span>
-        <strong>docker-compose.yml</strong>
-        <span class="muted small">Publishes Skint on port 8080.</span>
-      </a>
-      <a class="download" href="{{ site.Params.releaseUrl }}/env.example" download>
-        <span class="download__label">Settings</span>
-        <strong>env.example</strong>
-        <span class="muted small">Copy to <code>.env</code> and edit.</span>
+        <span class="muted small">The app source, Dockerfile, requirements, <code>docker-compose.yml</code> and <code>.env.example</code>. About 85 KB.</span>
       </a>
     </div>
     <ol class="quick-steps">
-      <li>Unzip <code>skint.zip</code> and put <code>docker-compose.yml</code> in the same folder.</li>
+      <li>Unzip <code>skint.zip</code> into a new folder.</li>
       <li>Run <code>cp .env.example .env</code>, then edit it if you want a sign-in screen.</li>
       <li>Run <code>docker compose up -d --build</code> and open <code>http://localhost:8080</code>.</li>
     </ol>

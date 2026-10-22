@@ -53,15 +53,11 @@ docker run --rm hello-world
 
 Use `docker compose` with a space. The older `docker-compose` command isn't needed.
 
-## 1. Download the files
+## 1. Download and unzip
 
-Download the full app, or just the compose file and settings if you already have the source:
+Download [skint.zip](https://github.com/murraycollier/skint/releases/latest/download/skint.zip). It contains everything you need: the app source, the Dockerfile, `docker-compose.yml` and `.env.example`.
 
-- [skint.zip](https://github.com/murraycollier/skint/releases/latest/download/skint.zip): the app source, Dockerfile and requirements
-- [docker-compose.yml](https://github.com/murraycollier/skint/releases/latest/download/docker-compose.yml): publishes Skint on port 8080
-- [env.example](https://github.com/murraycollier/skint/releases/latest/download/env.example): the settings file, to copy to `.env`
-
-Unzip `skint.zip` into a new folder, then put `docker-compose.yml` in the same folder.
+Unzip it into a new folder, then open a terminal in that folder for the next steps.
 
 ## 2. Configure
 

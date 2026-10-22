@@ -13,17 +13,16 @@ Replace the placeholder in `hugo.toml` before launch: `coffeeUrl`, which should 
 
 ## Publish a new app release
 
-Downloads and issues live in the public [skint](https://github.com/murraycollier/skint) repo, not here. To publish a new version:
+Downloads and issues live in the public [skint](https://github.com/murraycollier/skint) repo, not here. The release is a single zip with everything inside. To publish a new version:
 
 ```bash
 python3 scripts/build_download.py /path/to/skint     # writes dist/skint.zip
-cp release/docker-compose.yml release/env.example dist/
-gh release create vX.Y.Z dist/skint.zip dist/docker-compose.yml dist/env.example --repo murraycollier/skint
+gh release create vX.Y.Z dist/skint.zip --repo murraycollier/skint
 ```
 
-The script packs an explicit list of files (the Dockerfile, requirements, README, `.env.example`, `app/` and `static/`), so `.env`, data and caches stay out. The compose file in the zip comes from `release/docker-compose.yml`.
+The script packs an explicit list of files (the Dockerfile, requirements, README, `.env.example`, `app/` and `static/`) plus `release/docker-compose.yml`. `.env`, data and caches stay out.
 
-The site links to `releases/latest/download/`, so each new release updates the downloads automatically.
+The site links to `releases/latest/download/skint.zip`, so each new release updates the download automatically.
 
 ## Deploy
 
