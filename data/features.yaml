@@ -1,18 +1,24 @@
 - title: Overview at a glance
+  icon: chart
   text: Take-home pay, outgoings and what's left, with a donut of where the money goes, the next bills due and a twelve-month outlook.
   accent: indigo
 - title: Every direct debit in one list
+  icon: calendar
   text: Search, filter by category, and switch between monthly and annual totals. Add, edit or remove a bill in a few taps.
   accent: pink
 - title: Bring your spreadsheet with you
+  icon: upload
   text: Import your existing Expenditure workbook in one step. Totals are worked out from the figures underneath, so they can't drift out of line.
   accent: teal
 - title: Made for the household
+  icon: users
   text: Give each person a colour and a photo, see how income is split, and let everyone sign in with their own account.
   accent: amber
 - title: Two-step sign-in
+  icon: shield
   text: A password, then a six-digit code from any authenticator app. Eight single-use recovery codes are issued at set-up, and trusted browsers stay signed in for a number of days you choose.
   accent: sky
 - title: Backups you can actually open
+  icon: download
   text: Download a full JSON backup, restore it whenever you need to, or export a formatted Excel workbook. Your data is one SQLite file on a Docker volume you control.
   accent: violet

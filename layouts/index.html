@@ -31,7 +31,7 @@
     <div class="grid">
       {{ range hugo.Data.features }}
       <article class="card card--{{ .accent }}">
-        <span class="card__dot" aria-hidden="true"></span>
+        <span class="card__icon">{{ partial "feature-icon.html" .icon }}</span>
         <h3>{{ .title }}</h3>
         <p>{{ .text }}</p>
       </article>
