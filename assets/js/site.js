@@ -21,7 +21,7 @@
   });
 })();
 
-// Waitlist dialog: opened from every Buy Skint button and posted to Formspree.
+// Waitlist dialog: opened from every Buy Skint button and posted to an ntfy topic.
 (() => {
   const dialog = document.getElementById("waitlist");
   const form = document.getElementById("waitlist-form");
@@ -56,19 +56,16 @@
       setStatus("Thanks, you're on the list.", false);
       return;
     }
-    if (form.action.includes("REPLACE_ME")) {
-      setStatus("The waitlist isn't connected yet. Please try again later.", true);
-      return;
-    }
-
+    const message = String(data.get("message") || "").trim();
     const button = form.querySelector("button[type=submit]");
     button.disabled = true;
     setStatus("Sending…", false);
     try {
+      // ntfy takes the notification text as the request body and the title as a header.
       const response = await fetch(form.action, {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        body: message ? `${email}\n\n${message}` : email,
+        headers: { Title: "Skint waitlist", Tags: "bell" },
       });
       if (!response.ok) throw new Error(String(response.status));
       form.reset();

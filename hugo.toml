@@ -12,6 +12,6 @@ disableKinds = ["taxonomy", "term", "RSS"]
   # Placeholders. Replace before launch.
   price = "£25"
   priceNote = "One-off price, includes updates"
-  # Formspree form endpoint, e.g. https://formspree.io/f/abcdwxyz. Set this up with murraycollier@gmail.com.
-  waitlistEndpoint = "https://formspree.io/f/REPLACE_ME"
+  # Waitlist signups are posted to this ntfy topic on the home server, which sends a push notification.
+  waitlistUrl = "https://notis.technomuz.com/muzalerts"
   contactEmail = "you@example.com"

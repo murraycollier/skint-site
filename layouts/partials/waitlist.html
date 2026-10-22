@@ -4,7 +4,7 @@
     <p class="eyebrow">Skint</p>
     <h2 id="waitlist-title">Join the waitlist</h2>
     <p class="muted">Skint isn't on sale yet. Leave your email and we'll let you know when you can buy it, at {{ site.Params.price }}.</p>
-    <form id="waitlist-form" action="{{ site.Params.waitlistEndpoint }}" method="POST" novalidate>
+    <form id="waitlist-form" action="{{ site.Params.waitlistUrl }}" method="POST" novalidate>
       <label class="field">
         <span>Email</span>
         <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
