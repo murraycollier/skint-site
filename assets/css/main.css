@@ -1311,3 +1311,31 @@ p {
     translate: none;
   }
 }
+
+/* Header coffee button */
+
+.coffee-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.coffee-nav .coffee-icon {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 720px) {
+  .coffee-nav {
+    padding: 9px 11px;
+  }
+
+  .coffee-nav__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
