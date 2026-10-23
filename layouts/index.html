@@ -88,16 +88,16 @@
       <p class="lead">Grab the app and the setup files, then run it with Docker Compose. Don't have Docker yet? <a href="{{ "get-started/" | relLangURL }}#install-docker">Install it for macOS, Windows or Linux</a>. The full guide is in the <a href="{{ "get-started/" | relLangURL }}">setup guide</a>.</p>
     </header>
     <div class="download-single reveal">
-      <a class="download download--main" href="{{ site.Params.releaseUrl }}/skint.zip" download>
+      <a class="download download--main" href="{{ site.Params.releaseUrl }}/skint-setup.zip" download>
         <span class="download__label">Everything you need</span>
-        <strong>skint.zip</strong>
-        <span class="muted small">The app source, Dockerfile, requirements, <code>docker-compose.yml</code> and <code>.env.example</code>. About 85 KB.</span>
+        <strong>skint-setup.zip</strong>
+        <span class="muted small">The compose file and settings file. Skint itself is downloaded automatically from the published image.</span>
       </a>
     </div>
     <ol class="quick-steps reveal">
-      <li>Unzip <code>skint.zip</code> into a new folder.</li>
-      <li>Run <code>cp .env.example .env</code>, then edit it if you want a sign-in screen.</li>
-      <li>Run <code>docker compose up -d --build</code> and open <code>http://localhost:8080</code>.</li>
+      <li>Unzip <code>skint-setup.zip</code> into a new folder.</li>
+      <li>Run <code>cp env.example .env</code>, then edit it if you want a sign-in screen.</li>
+      <li>Run <code>docker compose up -d</code> and open <code>http://localhost:8080</code>.</li>
     </ol>
   </div>
 </section>
