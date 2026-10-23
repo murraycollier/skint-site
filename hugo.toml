@@ -8,7 +8,8 @@ disableKinds = ["taxonomy", "term", "RSS"]
 
 [params]
   tagline = "Your household money, on one calm screen."
-  description = "Skint is a free, self-hosted household money tracker. See take-home pay, bills and what's left at the end of the month, on your own server."
+  seoTitle = "Skint: self-hosted household budget tracker"
+  description = "Skint is a free, self-hosted household budget tracker. Track take-home pay, direct debits and what's left each month, running in Docker on your own server."
   # Buy Me a Coffee page
   coffeeUrl = "https://buymeacoffee.com/murraycollier"
   # The public Skint repo holds the downloads and the issue tracker.
@@ -17,3 +18,8 @@ disableKinds = ["taxonomy", "term", "RSS"]
   issuesUrl = "https://github.com/murraycollier/skint/issues"
   newIssueUrl = "https://github.com/murraycollier/skint/issues/new/choose"
   discordUrl = "https://discord.com/invite/9ax2uZcjt"
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
