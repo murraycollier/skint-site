@@ -2,12 +2,12 @@
 <header class="guide-hero">
   <div class="wrap">
     <p class="eyebrow">Setup guide</p>
-    <h1>Set up Skint, step by step</h1>
-    <p class="lead">No experience with computers' command line needed. You'll install one free app, copy and paste a few lines of text, and then open Skint in your web browser. Each step explains what it's doing and why.</p>
+    <h1>Get Skint running in about five minutes</h1>
+    <p class="lead">Install Docker, download two small files, pull the published image, and open Skint at <code>localhost:8080</code>. Each step stands on its own, so jump straight to where you are.</p>
     <ul class="guide-meta" aria-label="At a glance">
-      <li>About 15 minutes</li>
-      <li>Mac, Windows or Linux</li>
-      <li>No programming needed</li>
+      <li>About 5 minutes</li>
+      <li>Needs Docker</li>
+      <li>Opens on port 8080</li>
     </ul>
   </div>
 </header>
@@ -16,189 +16,102 @@
   <aside class="guide-toc" aria-label="On this page">
     <p class="guide-toc__title">On this page</p>
     <ol>
-      <li><a href="#before">Before you start</a></li>
+      <li><a href="#requirements">What you need</a></li>
       <li><a href="#install-docker">1. Install Docker</a></li>
-      <li><a href="#open-terminal">2. Open the Terminal</a></li>
-      <li><a href="#download">3. Download the setup files</a></li>
-      <li><a href="#open-folder">4. Open the folder in the Terminal</a></li>
-      <li><a href="#configure">5. Make your settings file</a></li>
-      <li><a href="#start">6. Start Skint</a></li>
-      <li><a href="#open-skint">7. Open Skint</a></li>
-      <li><a href="#figures">8. Load your figures</a></li>
-      <li><a href="#household">9. Add the household</a></li>
-      <li><a href="#everyday">Everyday use</a></li>
-      <li><a href="#troubleshooting">If something goes wrong</a></li>
+      <li><a href="#download">2. Download the files</a></li>
+      <li><a href="#configure">3. Configure</a></li>
+      <li><a href="#start">4. Start it</a></li>
+      <li><a href="#figures">5. Load your figures</a></li>
+      <li><a href="#household">6. Add the household</a></li>
+      <li><a href="#update">Updating</a></li>
+      <li><a href="#proxy">Behind a reverse proxy</a></li>
       <li><a href="#data">Keep your data safe</a></li>
-      <li><a href="#proxy">Advanced: reverse proxy</a></li>
     </ol>
   </aside>
 
   <div class="guide">
 
-    <section class="g-section" id="before">
-      <h2>Before you start</h2>
-      <p class="g-intro">Skint is a web app that runs on your own computer or home server. To run it, you need <strong>Docker</strong>, a free app that runs programs like Skint in a safe, self-contained box. You'll also use the <strong>Terminal</strong>, a window where you type short instructions. Don't worry: you only copy and paste a few lines.</p>
+    <section class="g-section" id="requirements">
+      <h2>What you need</h2>
       <ul class="g-checklist">
-        <li>A Mac, a Windows PC, or a Linux computer that you can leave switched on</li>
-        <li>An internet connection for the first download</li>
+        <li>A computer or home server with <strong>Docker</strong> and <strong>Docker Compose</strong></li>
         <li>Your Expenditure spreadsheet, if you want to import existing figures</li>
       </ul>
     </section>
 
     <section class="g-section" id="install-docker">
-      <div class="g-step">
-        <span class="g-num">1</span>
-        <div>
-          <h2>Install Docker</h2>
-          <p>Docker is the app that runs Skint. Install it once, then leave it alone. Choose the option for your computer.</p>
-          <div class="g-options">
-            <article class="g-card">
-              <p class="g-tag">Mac or Windows</p>
-              <h3>Docker Desktop</h3>
-              <ol>
-                <li>Go to <a href="https://www.docker.com/products/docker-desktop/" rel="noopener">docker.com/products/docker-desktop</a> and download the version for your computer.</li>
-                <li>Open the file you downloaded and follow the installer. On Windows, if it asks you to turn on <strong>WSL 2</strong>, say yes and restart when asked.</li>
-                <li>Open <strong>Docker Desktop</strong> from your Applications (Mac) or Start menu (Windows). Accept the terms and skip any sign-in prompts.</li>
-                <li>Wait until the Docker whale icon in your menu bar or taskbar stops animating and says it's running.</li>
-              </ol>
-            </article>
-            <article class="g-card">
-              <p class="g-tag">Mac only</p>
-              <h3>OrbStack (alternative)</h3>
-              <ol>
-                <li>Download it from <a href="https://orbstack.dev" rel="noopener">orbstack.dev</a> and open it.</li>
-                <li>Follow the setup. It works the same way as Docker Desktop for everything in this guide.</li>
-              </ol>
-            </article>
-            <article class="g-card">
-              <p class="g-tag">Linux</p>
-              <h3>Docker Engine</h3>
-              <p>On Ubuntu or Debian, run these in the Terminal (see step 2). Other Linux systems are covered in <a href="https://docs.docker.com/engine/install/" rel="noopener">Docker's guide</a>.</p>
-              <pre><code>sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-sudo usermod -aG docker $USER</code></pre>
-              <p class="g-note">After the last line, log out and back in so the change takes effect.</p>
-            </article>
-          </div>
-        </div>
+      <h2>1. Install Docker</h2>
+      <p class="g-intro">Skint runs in Docker. Pick the option for your system. You only need one.</p>
+      <div class="g-options">
+        <article class="g-card">
+          <p class="g-tag">macOS or Windows</p>
+          <h3>Docker Desktop</h3>
+          <ol>
+            <li>Download it from <a href="https://www.docker.com/products/docker-desktop/" rel="noopener">docker.com</a> and install.</li>
+            <li>On Windows it uses WSL 2. If prompted, enable it and restart.</li>
+            <li>Open Docker Desktop and wait until it says it's running.</li>
+          </ol>
+        </article>
+        <article class="g-card">
+          <p class="g-tag">macOS</p>
+          <h3>OrbStack</h3>
+          <ol>
+            <li>Download it from <a href="https://orbstack.dev" rel="noopener">orbstack.dev</a> and open it.</li>
+            <li>Finish setup. It installs the <code>docker</code> and <code>docker compose</code> commands for you.</li>
+          </ol>
+          <p class="g-note">A lighter alternative to Docker Desktop.</p>
+        </article>
+        <article class="g-card">
+          <p class="g-tag">Linux</p>
+          <h3>Docker Engine</h3>
+          <p>On Ubuntu or Debian, install from Docker's repository. Other distros are in <a href="https://docs.docker.com/engine/install/" rel="noopener">Docker's guide</a>.</p>
+          <p>In the terminal, type each of these lines and press Enter after each one:</p>
+<ul><li><code>sudo apt-get update</code></li><li><code>sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin</code></li><li><code>sudo usermod -aG docker $USER</code></li></ul>
+          <p class="g-note">Sign out and back in after the last line so the group change applies.</p>
+        </article>
       </div>
-    </section>
 
-    <section class="g-section" id="open-terminal">
-      <div class="g-step">
-        <span class="g-num">2</span>
-        <div>
-          <h2>Open the Terminal</h2>
-          <p>The Terminal is a window where you type instructions to your computer. Open the one for your system:</p>
-          <div class="g-options">
-            <article class="g-card">
-              <p class="g-tag">Mac</p>
-              <h3>Terminal</h3>
-              <p>Press <strong>Command + Space</strong>, type <strong>Terminal</strong>, and press <strong>Enter</strong>. A window with a blinking cursor opens.</p>
-            </article>
-            <article class="g-card">
-              <p class="g-tag">Windows</p>
-              <h3>PowerShell</h3>
-              <p>Press the <strong>Start</strong> key, type <strong>PowerShell</strong>, and press <strong>Enter</strong>. A blue or black window opens.</p>
-            </article>
-            <article class="g-card">
-              <p class="g-tag">Linux</p>
-              <h3>Terminal</h3>
-              <p>Press <strong>Ctrl + Alt + T</strong>. On most desktops this opens the Terminal.</p>
-            </article>
-          </div>
-          <p>Each time you see a grey box below, copy the text in it (the <strong>Copy</strong> button in the top-right corner does this), click into the Terminal window, paste with <strong>Command + V</strong> (Mac) or <strong>Ctrl + V</strong> (Windows and Linux), and press <strong>Enter</strong>. Nothing happens until you press Enter.</p>
-          <div class="g-callout">
-            <strong>Tip:</strong> the Terminal is fine to close once Skint is running. Skint keeps going in the background.
-          </div>
-        </div>
-      </div>
+      <h3 class="g-subhead" id="check-docker">Check it works</h3>
+      <p>In the terminal, type <code>docker --version</code>, then <code>docker compose version</code>, then <code>docker run --rm hello-world</code>, pressing Enter after each one.</p>
+      <p class="g-note">Use <code>docker compose</code> with a space. The older <code>docker-compose</code> command isn't needed.</p>
     </section>
 
     <section class="g-section" id="download">
       <div class="g-step">
-        <span class="g-num">3</span>
+        <span class="g-num">2</span>
         <div>
-          <h2>Download the setup files</h2>
-          <p>Click the button below. Your browser saves a file called <code>skint-setup.zip</code> to your Downloads folder.</p>
+          <h2>Download the files</h2>
+          <p>Download the setup pack and unzip it into a new folder. It contains the compose file and the settings file.</p>
           <div class="g-download-row">
             <a class="btn btn--small" href="https://github.com/murraycollier/skint/releases/latest/download/skint-setup.zip">Download setup files</a>
           </div>
-          <p>Now unzip it into a new folder called <strong>skint</strong>:</p>
-          <div class="g-options">
-            <article class="g-card">
-              <p class="g-tag">Mac</p>
-              <p>Double-click <code>skint-setup.zip</code>. A folder with the same name appears next to it. Rename that folder to <strong>skint</strong>, and move it to your <strong>Documents</strong> folder.</p>
-            </article>
-            <article class="g-card">
-              <p class="g-tag">Windows</p>
-              <p>Right-click <code>skint-setup.zip</code> and choose <strong>Extract All</strong>. Rename the new folder to <strong>skint</strong>, and move it to your <strong>Documents</strong> folder.</p>
-            </article>
-          </div>
-          <p class="g-note">Inside the folder you should see two files: <code>docker-compose.yml</code> and <code>env.example</code>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="g-section" id="open-folder">
-      <div class="g-step">
-        <span class="g-num">4</span>
-        <div>
-          <h2>Open the folder in the Terminal</h2>
-          <p>The Terminal needs to be inside the <strong>skint</strong> folder, so it can find the files. The quickest way:</p>
-          <div class="g-options">
-            <article class="g-card">
-              <p class="g-tag">Mac</p>
-              <ol>
-                <li>Open the <strong>skint</strong> folder in Finder.</li>
-                <li>In the Terminal, type <code>cd </code> (the letters c, d and a space).</li>
-                <li>Drag the <strong>skint</strong> folder from Finder onto the Terminal window. Its path appears after <code>cd</code>.</li>
-                <li>Press <strong>Enter</strong>.</li>
-              </ol>
-            </article>
-            <article class="g-card">
-              <p class="g-tag">Windows</p>
-              <ol>
-                <li>Open the <strong>skint</strong> folder in File Explorer.</li>
-                <li>Click the grey address bar at the top, type <code>powershell</code>, and press <strong>Enter</strong>.</li>
-                <li>A PowerShell window opens already inside the folder.</li>
-              </ol>
-            </article>
-          </div>
-          <p>To check you're in the right place, type <code>ls</code> (Mac) or <code>dir</code> (Windows) and press Enter. You should see <code>docker-compose.yml</code> listed.</p>
         </div>
       </div>
     </section>
 
     <section class="g-section" id="configure">
       <div class="g-step">
-        <span class="g-num">5</span>
+        <span class="g-num">3</span>
         <div>
-          <h2>Make your settings file</h2>
-          <p>Skint reads its settings from a file called <code>.env</code>. You make it by copying the example file. Paste this into the Terminal and press Enter:</p>
-          <div class="g-options">
-            <article class="g-card">
-              <p class="g-tag">Mac</p>
-              <pre><code>cp env.example .env</code></pre>
-            </article>
-            <article class="g-card">
-              <p class="g-tag">Windows</p>
-              <pre><code>copy env.example .env</code></pre>
-            </article>
-          </div>
-          <p>Nothing visible happens, which is normal. A new file called <code>.env</code> is now in the folder.</p>
-          <p class="g-label">Open the settings file and check it</p>
-          <ol>
-            <li>Open the <strong>skint</strong> folder in Finder (Mac) or File Explorer (Windows).</li>
-            <li>Find the file called <code>.env</code> and open it in a plain text editor: <strong>TextEdit</strong> on Mac (choose <em>Format → Make Plain Text</em> first), or <strong>Notepad</strong> on Windows.</li>
-            <li>You'll see a few lines. The most important one is <code>ALLOWED_HOSTS</code>. It should read <code>localhost</code>, which is correct for opening Skint on this computer. Leave the rest as it is for now.</li>
-            <li>Save the file and close the editor.</li>
-          </ol>
-          <div class="g-callout">
-            <strong>Can't see <code>.env</code>?</strong> On a Mac, press <strong>Command + Shift + .</strong> in Finder to show hidden files. On Windows, in File Explorer open the <em>View</em> menu and tick <em>Hidden items</em>.
+          <h2>Configure</h2>
+          <p>Copy the settings file to <code>.env</code>, then edit it in any text editor.</p>
+          <p>In the terminal, in the <strong>skint</strong> folder, type <code>cp env.example .env</code> and press Enter.</p>
+          <div class="g-table-wrap">
+            <table class="g-table">
+              <thead><tr><th>Setting</th><th>What it does</th></tr></thead>
+              <tbody>
+                <tr><td><code>APP_PASSWORD</code></td><td>Turns on the sign-in screen and two-step sign-in. Leave it empty to run without either.</td></tr>
+                <tr><td><code>APP_USER</code></td><td>The username for the sign-in screen. Defaults to <code>admin</code>.</td></tr>
+                <tr><td><code>ALLOWED_HOSTS</code></td><td>Domain names the app answers to, such as <code>skint.example.com,localhost</code>. Empty accepts any address.</td></tr>
+                <tr><td><code>MFA_REMEMBER_DAYS</code></td><td>Days a trusted browser stays signed in without a code. Defaults to 7. Set 0 to ask every time.</td></tr>
+              </tbody>
+            </table>
           </div>
           <div class="g-callout">
-            <strong>Want a password?</strong> Set <code>APP_PASSWORD</code> to any password you like, for example <code>APP_PASSWORD=choose-a-long-password</code>. Anyone opening Skint will then need to sign in. Once you set a password, everyone in the household also signs in with an authenticator app (step 9). Leave it empty to skip sign-in.
+            <strong>Two-step sign-in comes with login.</strong> It isn't a separate setting. Once <code>APP_PASSWORD</code> is set, every account signs in with a password and then a six-digit code from an authenticator app.
+          </div>
+          <div class="g-callout">
+            <strong>Tip:</strong> if you set <code>ALLOWED_HOSTS</code>, include <code>localhost</code> too if you'll open Skint from the same machine.
           </div>
         </div>
       </div>
@@ -206,136 +119,60 @@ sudo usermod -aG docker $USER</code></pre>
 
     <section class="g-section" id="start">
       <div class="g-step">
-        <span class="g-num">6</span>
+        <span class="g-num">4</span>
         <div>
-          <h2>Start Skint</h2>
-          <p>Make sure Docker Desktop is running (the whale icon has settled). Then paste this into the Terminal, in the <strong>skint</strong> folder, and press Enter:</p>
-          <pre><code>docker compose up -d</code></pre>
-          <p>The first time, Docker downloads Skint. This takes a minute or two, and you'll see lines of text scroll by. When it stops and you're back at a line with a cursor, Skint is running.</p>
-          <div class="g-callout">
-            <strong>Running in the background.</strong> The <code>-d</code> means Skint runs quietly. You can close the Terminal, and Skint keeps running until you stop it.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="g-section" id="open-skint">
-      <div class="g-step">
-        <span class="g-num">7</span>
-        <div>
-          <h2>Open Skint</h2>
-          <p>Open your web browser (Safari, Chrome, Edge or Firefox), click the address bar at the top, paste this address and press Enter:</p>
-          <pre><code>http://localhost:8080</code></pre>
-          <p>The Skint dashboard opens. If it's blank or says the page can't be reached, wait another 30 seconds and refresh. Docker sometimes needs a moment after starting.</p>
-          <p>If you set a password in step 5, you'll see a sign-in screen first. Enter the username <code>admin</code> (or whatever you set as <code>APP_USER</code>) and your password, then follow step 9.</p>
+          <h2>Start it</h2>
+          <p>Run this in the folder with <code>docker-compose.yml</code>. The first start downloads the image, which takes a minute or so.</p>
+          <p>In the terminal, in the <strong>skint</strong> folder, type <code>docker compose up -d</code> and press Enter.</p>
+          <p>Then open <a href="http://localhost:8080" rel="noopener">http://localhost:8080</a> in your browser.</p>
+          <p class="g-label">Useful commands</p>
+          <ul><li><code>docker compose ps</code>: checks the container is running.</li><li><code>docker compose logs -f skint</code>: follows the app's log.</li><li><code>docker compose restart skint</code>: restarts Skint after you change <code>.env</code>.</li><li><code>docker compose down</code>: stops Skint. Your data is kept.</li></ul>
         </div>
       </div>
     </section>
 
     <section class="g-section" id="figures">
       <div class="g-step">
-        <span class="g-num">8</span>
+        <span class="g-num">5</span>
         <div>
           <h2>Load your figures</h2>
-          <p>On the first visit the dashboard offers <strong>Import spreadsheet</strong>. Click it, choose your <code>Expenditure.xlsx</code> file, and Skint loads your bills and income.</p>
+          <p>On the first run the dashboard offers <strong>Import spreadsheet</strong>. Choose your <code>Expenditure.xlsx</code> in <strong>Settings</strong> and the data loads.</p>
           <div class="g-callout g-callout--warn">
-            <strong>Heads up:</strong> importing replaces everything Skint has stored. If you already have data, download a backup first from <strong>Settings → Download JSON</strong>.
+            <strong>Heads up:</strong> importing replaces everything stored. Download a backup first if you already have data.
           </div>
-          <p>Don't have a spreadsheet, or want to start fresh? Skip the import and add bills yourself from the <strong>Bills</strong> page.</p>
+          <p>Prefer to start fresh? Skip the import and add bills from the <strong>Bills</strong> page.</p>
         </div>
       </div>
     </section>
 
     <section class="g-section" id="household">
       <div class="g-step">
-        <span class="g-num">9</span>
+        <span class="g-num">6</span>
         <div>
           <h2>Add the household</h2>
-          <p>Add each person in <strong>Settings → People</strong>, so bills and income can be shared between you.</p>
-          <p>If you set a password in step 5, each person also needs two-step sign-in the first time they sign in:</p>
-          <ol>
-            <li>Install an authenticator app on a phone, such as Google Authenticator, Authy or Bitwarden.</li>
-            <li>Sign in with the username and password. Skint shows a QR code.</li>
-            <li>Scan the QR code with the authenticator app. It starts showing six-digit codes that change every 30 seconds.</li>
-            <li>Type the current six-digit code into Skint.</li>
-            <li>Skint then shows eight <strong>recovery codes</strong>. Write them down or save them somewhere safe. Each one works once, if you ever lose your phone.</li>
-          </ol>
+          <p>Add each person in <strong>Settings → People</strong>.</p>
+          <p>With login on, everyone then sets up two-step sign-in on their first sign-in: they scan a QR code with an authenticator app, enter the first code, and save their eight recovery codes. Each recovery code works once.</p>
           <div class="g-callout g-callout--warn">
-            <strong>Lost your phone?</strong> An admin can reset that person's two-step sign-in under <strong>Settings → People → Reset 2-step</strong>. They then set it up again at their next sign-in.
+            <strong>Lost a phone?</strong> An admin can reset that person's two-step sign-in under <strong>Settings → People → Reset 2-step</strong>. They set it up again at their next sign-in.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="g-section" id="everyday">
-      <h2>Everyday use</h2>
-      <div class="g-options g-options--three">
-        <article class="g-card">
-          <h3>Stop Skint</h3>
-          <p>In the Terminal, in the <strong>skint</strong> folder, type <code>docker compose down</code> and press Enter. Your data is kept.</p>
-        </article>
-        <article class="g-card">
-          <h3>Start it again</h3>
-          <p>Make sure Docker Desktop is running, then type <code>docker compose up -d</code> and press Enter. Open <code>http://localhost:8080</code> in your browser.</p>
-        </article>
-        <article class="g-card">
-          <h3>Update Skint</h3>
-          <p>Open <code>docker-compose.yml</code> in your text editor. Find the line starting <code>image:</code>, change the number after <code>skint:</code> to the new version from the <a href="https://github.com/murraycollier/skint/releases" rel="noopener">releases page</a>, save, then type <code>docker compose up -d</code>.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="g-section" id="troubleshooting">
-      <h2>If something goes wrong</h2>
-      <div class="g-options g-options--three">
-        <article class="g-card">
-          <h3>"command not found" or "docker is not recognized"</h3>
-          <p>Docker isn't installed or isn't running. Open Docker Desktop, wait for the whale to settle, then try again.</p>
-        </article>
-        <article class="g-card">
-          <h3>"Cannot connect to the Docker daemon"</h3>
-          <p>Docker Desktop is closed. Open it and wait until it says it's running.</p>
-        </article>
-        <article class="g-card">
-          <h3>Browser says the page can't be reached</h3>
-          <p>Wait 30 seconds and refresh. If it still fails, type <code>docker compose ps</code> in the Terminal. The status should say <em>running</em> or <em>healthy</em>.</p>
-        </article>
-        <article class="g-card">
-          <h3>"400 Bad Request" in the browser</h3>
-          <p>The <code>ALLOWED_HOSTS</code> line in <code>.env</code> doesn't include <code>localhost</code>. Open <code>.env</code>, set the line to <code>ALLOWED_HOSTS=localhost</code>, save, then type <code>docker compose up -d</code> again.</p>
-        </article>
-        <article class="g-card">
-          <h3>"port is already allocated" or "address already in use"</h3>
-          <p>Something else on your computer is using port 8080. Change <code>"8080:8000"</code> in <code>docker-compose.yml</code> to <code>"8081:8000"</code>, save, and open <code>http://localhost:8081</code> instead.</p>
-        </article>
-        <article class="g-card">
-          <h3>Still stuck?</h3>
-          <p>Ask on Discord, or <a href="{{ "" | relLangURL }}#support">open an issue on GitHub</a> and describe what you typed and what you saw.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="g-section" id="data">
-      <h2>Keep your data safe</h2>
-      <div class="g-options g-options--three">
-        <article class="g-card">
-          <h3>Back up regularly</h3>
-          <p>In Skint, go to <strong>Settings</strong> and choose <strong>Download JSON</strong>. Keep a copy somewhere other than this computer.</p>
-        </article>
-        <article class="g-card">
-          <h3>Don't delete the data</h3>
-          <p>Never type <code>docker compose down -v</code>. The <code>-v</code> part deletes all your Skint data.</p>
-        </article>
-        <article class="g-card">
-          <h3>Going online</h3>
-          <p>If you want to open Skint from other devices, set a password and put it behind HTTPS. See the advanced section below.</p>
-        </article>
+    <section class="g-section" id="update">
+      <div class="g-step">
+        <span class="g-num">+</span>
+        <div>
+          <h2>Updating</h2>
+          <p>When a new version is released, change the <code>image:</code> line in <code>docker-compose.yml</code> to the new tag, then start it again. Docker downloads the new image automatically. Your data stays in its volume.</p>
+          <p>In the terminal, in the <strong>skint</strong> folder, type <code>docker compose up -d</code> and press Enter.</p>
+          <p>Versions are listed on the <a href="https://github.com/murraycollier/skint/releases" rel="noopener">releases page</a>.</p>
+        </div>
       </div>
     </section>
 
     <section class="g-section" id="proxy">
-      <h2>Advanced: behind a reverse proxy</h2>
-      <div class="g-callout"><strong>Optional.</strong> Only read this if you already run Traefik or nginx on your server. Most people can skip it.</div>
+      <h2>Behind a reverse proxy</h2>
       <p class="g-intro">Skint listens on port 8000 inside its container. The default setup publishes that as port 8080. If you already run Traefik or nginx, put Skint on your proxy network instead and let the proxy handle HTTPS. Replace <code>skint.example.com</code> with your domain in each example.</p>
 
       <div class="g-card g-card--wide">
@@ -432,6 +269,24 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }</code></pre>
+      </div>
+    </section>
+
+    <section class="g-section" id="data">
+      <h2>Keep your data safe</h2>
+      <div class="g-options g-options--three">
+        <article class="g-card">
+          <h3>Back up regularly</h3>
+          <p>Download a JSON backup from <strong>Settings</strong> and keep a copy off the machine.</p>
+        </article>
+        <article class="g-card">
+          <h3>Keep the volume</h3>
+          <p>Don't run <code>docker compose down -v</code>. The <code>-v</code> flag deletes the data volume.</p>
+        </article>
+        <article class="g-card">
+          <h3>Go online safely</h3>
+          <p>If you open Skint beyond your own network, set a password and put it behind HTTPS.</p>
+        </article>
       </div>
     </section>
 
