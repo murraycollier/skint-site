@@ -84,10 +84,9 @@ docker run --rm hello-world</code></pre>
         <span class="g-num">2</span>
         <div>
           <h2>Download the files</h2>
-          <p>Make a folder for Skint and save both files into it.</p>
+          <p>Download the setup pack and unzip it into a new folder. It contains the compose file and the settings file.</p>
           <div class="g-download-row">
-            <a class="btn btn--small" href="https://github.com/murraycollier/skint/releases/latest/download/docker-compose.yml">Download docker-compose.yml</a>
-            <a class="btn btn--small btn--ghost" href="https://github.com/murraycollier/skint/releases/latest/download/env.example">Download settings file</a>
+            <a class="btn btn--small" href="https://github.com/murraycollier/skint/releases/latest/download/skint-setup.zip">Download setup files</a>
           </div>
         </div>
       </div>
@@ -126,9 +125,8 @@ docker run --rm hello-world</code></pre>
         <span class="g-num">4</span>
         <div>
           <h2>Start it</h2>
-          <p>Run these in the folder with <code>docker-compose.yml</code>. The first pull downloads the image, which takes a minute or so.</p>
-          <pre><code>docker compose pull
-docker compose up -d</code></pre>
+          <p>Run this in the folder with <code>docker-compose.yml</code>. The first start downloads the image, which takes a minute or so.</p>
+          <pre><code>docker compose up -d</code></pre>
           <p>Then open <a href="http://localhost:8080" rel="noopener">http://localhost:8080</a> in your browser.</p>
           <p class="g-label">Useful commands</p>
           <pre><code>docker compose ps             # check the container is running
@@ -172,10 +170,9 @@ docker compose down           # stop the app (your data is kept)</code></pre>
         <span class="g-num">+</span>
         <div>
           <h2>Updating</h2>
-          <p>When a new version is released, pull it and restart. Your data stays in its volume.</p>
-          <pre><code>docker compose pull
-docker compose up -d</code></pre>
-          <p>To check which version you're on, look at the <a href="https://github.com/murraycollier/skint/releases" rel="noopener">releases page</a>. The compose file pins a version, so change its <code>image:</code> line to the new tag before pulling.</p>
+          <p>When a new version is released, change the <code>image:</code> line in <code>docker-compose.yml</code> to the new tag, then start it again. Docker downloads the new image automatically. Your data stays in its volume.</p>
+          <pre><code>docker compose up -d</code></pre>
+          <p>Versions are listed on the <a href="https://github.com/murraycollier/skint/releases" rel="noopener">releases page</a>.</p>
         </div>
       </div>
     </section>
